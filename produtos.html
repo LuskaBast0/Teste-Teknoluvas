@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos - TEKNOLUVAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset e Configurações Globais (Idêntico ao index.html para consistência) */
+        :root {
+            --color-primary: #00529B;
+            --color-primary-dark: #003F7A;
+            --color-secondary: #3b82f6;
+            --color-text-primary: #1f2937;
+            --color-text-secondary: #4b5563;
+            --color-background-light: #f3f4f6;
+            --color-white: #ffffff;
+            --color-error: #dc2626;
+            --font-family-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-family-sans);
+            background-color: var(--color-background-light);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+        }
+
+        /* Utilitários */
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 3rem; }
+        .section-title .highlight { color: var(--color-primary); }
+        .btn {
+            display: inline-block; font-weight: 700; padding: 0.75rem 2rem;
+            border-radius: 9999px; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: none; font-size: 0.875rem;
+        }
+        .btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+        .btn-primary:hover:not(:disabled) { background-color: var(--color-primary-dark); transform: scale(1.05); }
+        .btn-neutral { background-color: var(--color-text-secondary); color: var(--color-white); }
+        .btn-neutral:hover:not(:disabled) { background-color: var(--color-text-primary); transform: scale(1.05); }
+        
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
+
+        /* Header Styles (Idêntico) */
+        header {
+            position: sticky; top: 0; z-index: 50; background-color: var(--color-white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .header-top { display: flex; align-items: center; gap: 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .header-top .logo img { height: 50px; width: auto; display: block; }
+        .header-search { flex-grow: 1; position: relative; }
+        .header-search input {
+            width: 100%; height: 44px; border: 1px solid #d1d5db; border-radius: 0.375rem;
+            padding: 0.5rem 3rem 0.5rem 1rem; font-size: 1rem; font-family: inherit; color: var(--color-text-primary);
+        }
+        .header-search input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+        .header-search button {
+            position: absolute; right: 0; top: 0; height: 100%; width: 44px;
+            background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .header-search button .icon { width: 1.5rem; height: 1.5rem; color: var(--color-text-secondary); }
+        .header-controls { display: flex; align-items: center; }
+        .header-controls .cart-toggle { position: relative; border: none; background-color: transparent; padding: 0; cursor: pointer; }
+        .header-controls .cart-toggle .icon { width: 2rem; height: 2rem; color: var(--color-primary); }
+        .cart-badge {
+            position: absolute; top: 0; right: 0; background-color: var(--color-primary); color: var(--color-white);
+            border-radius: 50%; width: 1.25rem; height: 1.25rem; font-size: 0.75rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; transform: scale(0); transition: transform 0.2s ease;
+        }
+        .cart-badge.visible { transform: scale(1); }
+        
+        .header-nav { background-color: var(--color-primary); }
+        .header-nav .container { display: flex; align-items: center; justify-content: flex-start; gap: 2rem; min-height: 48px; }
+        
+         /* --- Estilo Dropdown em Escada --- */
+        .dropdown-wrapper {
+            position: relative;
+        }
+
+        .categories-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #d1d5db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+        
+        .categories-dropdown:hover {
+            color: var(--color-white);
+        }
+        
+        .categories-dropdown .icon-chevron {
+            width: 1.25rem;
+            height: 1.25rem;
+            transition: transform 0.2s;
+        }
+        
+        .dropdown-wrapper:hover .icon-chevron {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--color-white);
+            min-width: 250px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0 0.5rem 0.5rem;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            padding-left: 2rem; /* Efeito de degrau/escada ao passar o mouse */
+        }
+        /* --- Fim Estilo Dropdown --- */
+
+        .main-nav-links { display: flex; align-items: center; gap: 1.5rem; margin-left: 1rem; }
+        .main-nav-links a {
+            color: var(--color-white); text-decoration: none; font-weight: 700; font-size: 0.9rem;
+            padding: 0.5rem 0; position: relative; transition: color 0.2s ease;
+        }
+        .main-nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background-color: var(--color-white); transform: scaleX(0); transform-origin: bottom center; transition: transform 0.25s ease-out;
+        }
+        .main-nav-links a:hover::after { transform: scaleX(1); }
+
+        @keyframes cart-shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+            40%, 60% { transform: translate3d(3px, 0, 0); }
+        }
+        .cart-shake { animation: cart-shake 0.7s cubic-bezier(.36,.07,.19,.97) both; }
+
+        /* Styles Específicos da Página de Produtos */
+        .page-header {
+            background-color: var(--color-white);
+            padding: 3rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+        .category-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .category-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 32px;
+            background-color: var(--color-primary);
+            border-radius: 4px;
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-0.5rem); }
+        .product-card img { width: 100%; height: 12rem; object-fit: cover; }
+        .product-card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-card-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .product-card-content p { color: var(--color-text-secondary); flex-grow: 1; margin-bottom: 1rem; font-size: 0.9rem; }
+        .product-card-actions { margin-top: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+        .product-card-actions .btn { text-align: center; width: 100%; }
+
+        /* Tooltip & C.A. Button */
+        .ca-button {
+            position: relative; display: inline-flex; align-items: center; gap: 0.5rem; justify-content: center;
+        }
+        .ca-button .icon-info { width: 1rem; height: 1rem; opacity: 0.7; }
+        [data-tooltip]::after {
+            content: attr(data-tooltip); position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
+            background-color: var(--color-text-primary); color: var(--color-white); padding: 0.5rem 1rem;
+            border-radius: 0.375rem; font-size: 0.8rem; font-weight: 500; white-space: normal; width: 250px;
+            text-align: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none; z-index: 10; line-height: 1.4;
+        }
+        [data-tooltip]:hover::after { opacity: 1; visibility: visible; }
+
+        /* Drawer & Toast (Shared) */
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); z-index: 998; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .drawer {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 400px; height: 100%;
+            background-color: var(--color-white); box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+            z-index: 999; transform: translateX(100%); transition: transform 0.3s ease;
+            display: flex; flex-direction: column;
+        }
+        .drawer.active { transform: translateX(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid #e5e7eb; }
+        .drawer-header h3 { font-size: 1.25rem; font-weight: 700; }
+        .drawer-close-button { background: none; border: none; cursor: pointer; padding: 0.25rem; }
+        .drawer-close-button .icon { width: 1.5rem; height: 1.5rem; color: var(--color-text-secondary); }
+        .drawer-body { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+        .cart-empty-message { text-align: center; color: var(--color-text-secondary); padding-top: 4rem; }
+        .cart-items { list-style: none; }
+        .cart-item { display: flex; gap: 1rem; align-items: center; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb; }
+        .cart-item-image { width: 80px; height: 80px; object-fit: cover; border-radius: 0.375rem; }
+        .cart-item-details { flex-grow: 1; }
+        .cart-item-details h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .cart-item-quantity { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .quantity-btn { background-color: #e5e7eb; border: none; border-radius: 50%; width: 1.75rem; height: 1.75rem; font-weight: 700; cursor: pointer; }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid #e5e7eb; }
+        .budget-observations textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; min-height: 80px; margin-top: 1rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; }
+        .form-group input { width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+        .form-error-message { color: var(--color-error); font-size: 0.8rem; font-weight: 500; margin-top: 0.25rem; }
+        .cart-checkout-button { width: 100%; padding: 1rem; font-size: 1rem; }
+        .fly-to-cart-clone { position: fixed; z-index: 1000; border-radius: 0.5rem; transition: all 0.8s cubic-bezier(0.5, 0, 1, 0.5); pointer-events: none; object-fit: cover; }
+        
+        /* Toast */
+        .toast-notification {
+            position: fixed; bottom: 2rem; right: 2rem; display: flex; align-items: center; gap: 1rem;
+            background-color: #1f2937; color: #f9fafb; padding: 1rem 1.5rem; border-radius: 0.5rem;
+            z-index: 1001; opacity: 0; transform: translateY(20px); visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s; border-left: 4px solid #10b981;
+        }
+        .toast-notification.show { opacity: 1; transform: translateY(0); visibility: visible; }
+        .toast-notification .toast-icon { width: 1.5rem; height: 1.5rem; color: #10b981; }
+
+        /* Footer (Idêntico) */
+        footer { background-color: #000000; color: #d1d5db; padding-top: 5rem; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        .footer-column h4 { font-size: 1.125rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-white); text-transform: uppercase; }
+        .footer-links { list-style: none; }
+        .footer-links li:not(:last-child) { margin-bottom: 0.75rem; }
+        .footer-links a { color: #9ca3af; text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--color-primary); }
+        .newsletter-form { display: flex; margin-top: 1.5rem; }
+        .newsletter-form input { flex-grow: 1; padding: 0.75rem 1rem; border: 1px solid #4b5563; background-color: #374151; color: var(--color-white); border-radius: 0.375rem 0 0 0.375rem; }
+        .newsletter-form button { padding: 0.75rem 1rem; border: none; background-color: var(--color-primary); color: var(--color-white); border-radius: 0 0.375rem 0.375rem 0; cursor: pointer; }
+        .footer-bottom { border-top: 1px solid #374151; padding: 2rem 0; margin-top: 4rem; text-align: center; }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .footer-grid { grid-template-columns: 3fr 2fr 3fr; } }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER -->
+    <header>
+        <div class="header-top container">
+            <a href="index.html" class="logo">
+                <img src="https://placehold.co/280x60/FFFFFF/3b82f6?text=TEKNOLUVAS&font=poppins" alt="TEKNOLUVAS Logo" style="height: 50px;">
+            </a>
+            <form class="header-search">
+                <input type="search" placeholder="Buscar produtos, marcas e muito mais...">
+                <button type="submit" aria-label="Buscar">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                </button>
+            </form>
+            <div class="header-controls">
+                 <button id="cart-button" class="cart-toggle" aria-label="Abrir orçamento" aria-controls="cart-drawer">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <div class="dropdown-wrapper">
+                    <div class="categories-dropdown">
+                        Categorias
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-chevron" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="produtos.html#eletricista" class="dropdown-item">Eletricista</a>
+                        <a href="produtos.html#antichamas" class="dropdown-item">Antichamas</a>
+                        <a href="produtos.html#soldador" class="dropdown-item">Soldador</a>
+                        <a href="produtos.html#trabalho-em-altura" class="dropdown-item">Trabalho em Altura</a>
+                        <a href="produtos.html#hospitalar" class="dropdown-item">Hospitalar</a>
+                        <a href="produtos.html#sinalizacao" class="dropdown-item">Sinalização</a>
+                        <a href="produtos.html#protecao-respiratoria" class="dropdown-item">Proteção Respiratória</a>
+                    </div>
+                </div>
+                <div class="main-nav-links">
+                    <a href="produtos.html#eletricista">CABEÇA</a>
+                    <a href="produtos.html#soldador">TRONCO</a>
+                    <a href="produtos.html#hospitalar">PERNAS</a>
+                    <a href="produtos.html#trabalho-em-altura">PES</a>
+                    <a href="produtos.html#trabalho-em-altura">LUVAS</a>
+                    <a href="produtos.html#trabalho-em-altura">OUTROS</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Nossos Produtos</h1>
+                <p style="color: var(--color-text-secondary); max-width: 600px;">Explore nossa linha completa de Equipamentos de Proteção Individual. Segurança e qualidade para sua empresa.</p>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: CABEÇA -->
+        <section id="cabeça" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Proteção para Cabeça</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop" alt="Capacete de Segurança Aba Frontal">
+                        <div class="product-card-content">
+                            <h3>Capacete de Segurança Aba Frontal</h3>
+                            <p>Alta resistência a impactos, com suspensão ajustável.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c1" data-product-name="Capacete de Segurança Aba Frontal" data-product-image="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop" alt="Óculos de Proteção Incolor">
+                        <div class="product-card-content">
+                            <h3>Óculos de Proteção Incolor</h3>
+                            <p>Lentes de policarbonato com tratamento antirrisco e antiembaçante.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c2" data-product-name="Óculos de Proteção Incolor" data-product-image="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop" alt="Protetor Auricular Tipo Concha">
+                        <div class="product-card-content">
+                            <h3>Protetor Auricular Tipo Concha</h3>
+                            <p>Atenuação de ruído de alta performance para ambientes industriais.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c3" data-product-name="Protetor Auricular Tipo Concha" data-product-image="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop" alt="Máscara Respiratória PFF2">
+                        <div class="product-card-content">
+                            <h3>Máscara Respiratória PFF2</h3>
+                            <p>Proteção contra poeiras, névoas e fumos. Com válvula de exalação.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c4" data-product-name="Máscara Respiratória PFF2" data-product-image="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: TRONCO -->
+        <section id="tronco" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Proteção para o Tronco</h2>
+                <div class="products-grid">
+                     <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop" alt="Colete Refletivo">
+                        <div class="product-card-content">
+                            <h3>Colete Refletivo Tipo Blusão</h3>
+                            <p>Tecido fluorescente 100% poliéster com faixas retrorrefletivas.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t1" data-product-name="Colete Refletivo" data-product-image="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop" alt="Cinto Paraquedista">
+                        <div class="product-card-content">
+                            <h3>Cinto de Segurança Paraquedista</h3>
+                            <p>Para trabalho em altura, com pontos de ancoragem dorsal e peitoral.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t2" data-product-name="Cinto Paraquedista" data-product-image="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop" alt="Avental de Raspa">
+                        <div class="product-card-content">
+                            <h3>Avental de Raspa Soldador</h3>
+                            <p>Proteção contra agentes abrasivos, escoriantes e térmicos.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t3" data-product-name="Avental de Raspa" data-product-image="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop" alt="Camisa Uniforme Profissional">
+                        <div class="product-card-content">
+                            <h3>Camisa Uniforme Profissional</h3>
+                            <p>Tecido brim leve, manga longa, ideal para eletricistas e obras.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t4" data-product-name="Camisa Uniforme Profissional" data-product-image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: PERNAS -->
+        <section id="pernas" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Proteção para Pernas</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop" alt="Calça Brim Uniforme">
+                        <div class="product-card-content">
+                            <h3>Calça Brim Uniforme</h3>
+                            <p>Calça resistente com reforço, ideal para construção civil e indústria.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p1" data-product-name="Calça Brim Uniforme" data-product-image="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop" alt="Perneira de Segurança">
+                        <div class="product-card-content">
+                            <h3>Perneira de Segurança</h3>
+                            <p>Proteção contra picadas de animais peçonhentos e batidas.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p2" data-product-name="Perneira de Segurança" data-product-image="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca" alt="Joelheira Tática">
+                        <div class="product-card-content">
+                            <h3>Joelheira Tática de Proteção</h3>
+                            <p>Casco rígido e acolchoamento interno para conforto em trabalhos de joelhos.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p3" data-product-name="Joelheira Tática" data-product-image="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: PÉS -->
+        <section id="pés" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Proteção para os Pés</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop" alt="Botina de Segurança Nobuck">
+                        <div class="product-card-content">
+                            <h3>Botina de Segurança Nobuck</h3>
+                            <p>Com biqueira de composite, leve e confortável para o dia todo.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b1" data-product-name="Botina de Segurança Nobuck" data-product-image="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop" alt="Bota de PVC Impermeável">
+                        <div class="product-card-content">
+                            <h3>Bota de PVC Impermeável</h3>
+                            <p>Cano médio, ideal para ambientes úmidos e com produtos químicos.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b2" data-product-name="Bota de PVC Impermeável" data-product-image="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop" alt="Sapato de Segurança Social">
+                        <div class="product-card-content">
+                            <h3>Sapato de Segurança Social</h3>
+                            <p>Estilo e proteção para engenheiros e área administrativa.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b3" data-product-name="Sapato de Segurança Social" data-product-image="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: LUVAS -->
+        <section id="luvas" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Luvas de Proteção</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop" alt="Luva de Vaqueta Mista">
+                        <div class="product-card-content">
+                            <h3>Luva de Vaqueta Mista</h3>
+                            <p>Resistência mecânica para trabalhos pesados e manuseio de ferramentas.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l1" data-product-name="Luva de Vaqueta Mista" data-product-image="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop" alt="Luva Nitrílica Verde">
+                        <div class="product-card-content">
+                            <h3>Luva Nitrílica Química</h3>
+                            <p>Proteção contra agentes químicos, óleos e solventes.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l2" data-product-name="Luva Nitrílica Química" data-product-image="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop" alt="Luva de Malha Pigmentada">
+                        <div class="product-card-content">
+                            <h3>Luva de Malha Pigmentada</h3>
+                            <p>Antiderrapante para manuseio de caixas e materiais secos.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l3" data-product-name="Luva de Malha Pigmentada" data-product-image="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop" alt="Luva de Alta Tensão">
+                        <div class="product-card-content">
+                            <h3>Luva Isolante de Borracha</h3>
+                            <p>Proteção essencial para eletricistas contra choques elétricos.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l4" data-product-name="Luva Isolante de Borracha" data-product-image="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIA: OUTROS -->
+        <section id="outros" class="category-section">
+            <div class="container">
+                <h2 class="category-title">Outros Equipamentos</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop" alt="Cone de Sinalização">
+                        <div class="product-card-content">
+                            <h3>Cone de Sinalização</h3>
+                            <p>PVC flexível com faixas refletivas para segurança viária e obras.</p>
+                            <div class="product-card-actions">
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="o1" data-product-name="Cone de Sinalização" data-product-image="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop" alt="Extintor de Incêndio">
+                        <div class="product-card-content">
+                            <h3>Extintor de Incêndio ABC</h3>
+                            <p>Essencial para combate a princípios de incêndio em diversas classes.</p>
+                            <div class="product-card-actions">
+                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="o2" data-product-name="Extintor de Incêndio ABC" data-product-image="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- DRAWER OVERLAY -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+
+    <!-- BUDGET DRAWER -->
+    <aside id="cart-drawer" class="drawer" aria-labelledby="cart-heading">
+        <div class="drawer-header">
+            <h3 id="cart-heading">Meu Orçamento</h3>
+            <button id="cart-close-button" class="drawer-close-button" aria-label="Fechar orçamento">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <ul id="cart-items" class="cart-items">
+                <!-- Items will be inserted here -->
+            </ul>
+             <div class="budget-observations">
+                <label for="budget-observations-textarea" style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">Observações:</label>
+                <textarea id="budget-observations-textarea" placeholder="Ex: Preciso de tamanhos variados, etc."></textarea>
+            </div>
+            <div id="cart-empty-message" class="cart-empty-message" style="display: none;">
+                <p>Seu orçamento está vazio.</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div id="guest-info-form">
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 1rem;">Preencha seus dados para enviar o orçamento.</p>
+                <div class="form-group">
+                    <label for="guest-name">Nome</label>
+                    <input type="text" id="guest-name" name="guest-name" required>
+                    <div id="guest-name-error" class="form-error-message"></div>
+                </div>
+                 <div class="form-group">
+                    <label for="guest-email">Email</label>
+                    <input type="email" id="guest-email" name="guest-email" required>
+                    <div id="guest-email-error" class="form-error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="guest-phone">Telefone (com DDD)</label>
+                    <input type="tel" id="guest-phone" name="guest-phone" required>
+                     <div id="guest-phone-error" class="form-error-message"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary cart-checkout-button">Enviar Orçamento via WhatsApp</button>
+        </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo gradient-text" style="font-weight: 800; font-size: 1.5rem; text-decoration: none; display: inline-block; margin-bottom: 1rem; background: -webkit-linear-gradient(45deg, #3b82f6, #00529B); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TEKNOLUVAS</a>
+                    <p>Criando experiências digitais inovadoras para impulsionar o seu negócio.</p>
+                    <div class="social-links" style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                        <a href="#" aria-label="Instagram"><svg class="icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.5rem; height: 1.5rem; fill: currentColor;"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.338.935 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.717 2.126-1.384s.935-1.338 1.384-2.126c.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.148-.558-2.913-.306-.789-.717-1.459-1.384-2.126S20.65.935 21.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.82.679-1.38.896-.423.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.82-1.381-.896-.164-.423-.36-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.015-3.585.074-4.85c.056-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.382.42-.419.819-.679.896-1.381.423-.164 1.057.36 2.227-.413C8.415 2.176 8.797 2.16 12 2.16zm0 5.48c-2.336 0-4.238 1.902-4.238 4.238s1.902 4.238 4.238 4.238 4.238-1.902 4.238-4.238S14.336 7.64 12 7.64zm0 6.69c-1.365 0-2.468-1.103-2.468-2.468s1.103-2.468 2.468-2.468 2.468 1.103 2.468 2.468-1.103 2.468-2.468 2.468zm4.852-6.52c-.732 0-1.325.593-1.325 1.325s.593 1.325 1.325 1.325 1.325-.593 1.325-1.325-.593-1.325-1.325-1.325z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Contato Rápido</h4>
+                     <ul class="footer-links">
+                        <li><a href="mailto:contato@teknoluvas.com">contato@teknoluvas.com</a></li>
+                        <li><a href="tel:+5511999998888">+55 (11) 99999-8888</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Fique por Dentro</h4>
+                    <p>Inscreva-se para receber novidades sobre tecnologia e nossas soluções.</p>
+                    <form class="newsletter-form">
+                        <label for="newsletter-email" class="sr-only">Seu e-mail</label>
+                        <input type="email" id="newsletter-email" placeholder="Seu e-mail">
+                        <button type="submit">Inscrever</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEKNOLUVAS. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast-notification" role="alert" aria-live="assertive">
+        <svg class="toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <p id="toast-message" class="toast-message"></p>
+    </div>
+
+    <!-- Script de Funcionalidade (Carrinho e Drawer) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Shared Drawer Logic ---
+            const drawerOverlay = document.getElementById('drawer-overlay');
+            const cartDrawer = document.getElementById('cart-drawer');
+            let elementToFocusOnClose;
+
+            if(drawerOverlay) {
+                drawerOverlay.addEventListener('click', () => {
+                    if (cartDrawer.classList.contains('active')) toggleCart();
+                });
+            }
+
+            // --- Budget (Shopping Cart) Logic ---
+            const cartButton = document.getElementById('cart-button');
+            const cartCloseButton = document.getElementById('cart-close-button');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartEmptyMessage = document.getElementById('cart-empty-message');
+            const checkoutButton = document.querySelector('.cart-checkout-button');
+            
+            // Carrega do localStorage para manter estado entre páginas
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            const saveCart = () => {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            };
+            
+            const trapFocus = (e) => {
+                if (e.key !== 'Tab') return;
+                const focusableElements = Array.from(cartDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+                const firstFocusableElement = focusableElements[0];
+                const lastFocusableElement = focusableElements[focusableElements.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusableElement) {
+                        firstFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            };
+
+            const toggleCart = () => {
+                const isActive = cartDrawer.classList.contains('active');
+                cartDrawer.classList.toggle('active');
+                drawerOverlay.classList.toggle('active');
+                document.body.style.overflow = !isActive ? 'hidden' : '';
+
+                if (!isActive) {
+                    elementToFocusOnClose = document.activeElement;
+                    const focusableElements = cartDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if(focusableElements.length > 0) {
+                        setTimeout(() => focusableElements[0].focus(), 100);
+                    }
+                    cartDrawer.addEventListener('keydown', trapFocus);
+                } else {
+                    cartDrawer.removeEventListener('keydown', trapFocus);
+                    if (elementToFocusOnClose) elementToFocusOnClose.focus();
+                }
+            };
+
+            const renderCart = () => {
+                cartItemsContainer.innerHTML = '';
+                cartEmptyMessage.style.display = cart.length === 0 ? 'block' : 'none';
+                
+                if (cart.length > 0) {
+                    cart.forEach(item => {
+                        const li = document.createElement('li');
+                        li.classList.add('cart-item');
+                        li.dataset.productId = item.id;
+                        li.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <div class="cart-item-quantity">
+                                    <button class="quantity-btn decrease-quantity-btn" aria-label="Diminuir quantidade">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="quantity-btn increase-quantity-btn" aria-label="Aumentar quantidade">+</button>
+                                </div>
+                            </div>`;
+                        cartItemsContainer.appendChild(li);
+                    });
+                }
+                updateCartBadge();
+                saveCart();
+            };
+            
+            const updateCartBadge = () => {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartBadge.textContent = String(totalItems);
+                cartBadge.classList.toggle('visible', totalItems > 0);
+            };
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const clickedButton = e.currentTarget;
+                    const { productId, productName, productImage } = clickedButton.dataset;
+                    if (!productId || !productName || !productImage) return;
+                    if (clickedButton.disabled) return;
+
+                    // Fly-to-Cart Animation
+                    let productImageElement = clickedButton.closest('.product-card')?.querySelector('img');
+                    if (productImageElement) {
+                        const startRect = productImageElement.getBoundingClientRect();
+                        const endRect = cartButton.getBoundingClientRect();
+                        const imgClone = new Image();
+                        imgClone.src = productImageElement.src;
+                        imgClone.classList.add('fly-to-cart-clone');
+                        Object.assign(imgClone.style, {
+                            left: `${startRect.left}px`, top: `${startRect.top}px`,
+                            width: `${startRect.width}px`, height: `${startRect.height}px`
+                        });
+                        document.body.appendChild(imgClone);
+                        requestAnimationFrame(() => {
+                            Object.assign(imgClone.style, {
+                                left: `${endRect.left + endRect.width / 2 - 10}px`,
+                                top: `${endRect.top + endRect.height / 2 - 10}px`,
+                                width: '20px', height: '20px', opacity: '0'
+                            });
+                        });
+                        imgClone.addEventListener('transitionend', () => {
+                            imgClone.remove();
+                            cartButton.classList.add('cart-shake');
+                            setTimeout(() => cartButton.classList.remove('cart-shake'), 700);
+                        });
+                    }
+
+                    // Button Feedback
+                    const originalContent = clickedButton.innerHTML;
+                    clickedButton.disabled = true;
+                    clickedButton.innerHTML = `<span style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; line-height: 1;">Adicionado <svg style="width: 1.1rem; height: 1.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>`;
+
+                    const existingItem = cart.find(item => item.id === productId && item.name === productName);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({ id: productId, name: productName, image: productImage, quantity: 1 });
+                    }
+                    renderCart();
+                    
+                    setTimeout(() => {
+                        clickedButton.innerHTML = originalContent;
+                        clickedButton.disabled = false;
+                    }, 800);
+                });
+            });
+            
+            cartItemsContainer?.addEventListener('click', (e) => {
+                const cartItemElement = e.target.closest('.cart-item');
+                if (!cartItemElement) return;
+                const productId = cartItemElement.dataset.productId;
+                const itemInCart = cart.find(item => item.id === productId);
+                if (!itemInCart) return;
+
+                if (e.target.classList.contains('increase-quantity-btn')) {
+                    itemInCart.quantity++;
+                } else if (e.target.classList.contains('decrease-quantity-btn')) {
+                    itemInCart.quantity--;
+                }
+                
+                if (itemInCart.quantity <= 0) cart = cart.filter(item => item.id !== productId);
+                renderCart();
+            });
+
+            cartButton?.addEventListener('click', toggleCart);
+            cartCloseButton?.addEventListener('click', toggleCart);
+            renderCart();
+
+            // Checkout Logic
+            const setError = (inputElement, message) => {
+                const formGroup = inputElement.parentElement;
+                const errorDisplay = formGroup.querySelector('.form-error-message');
+                inputElement.classList.add('invalid');
+                if (errorDisplay) errorDisplay.innerText = message;
+            };
+
+            const clearError = (inputElement) => {
+                const formGroup = inputElement.parentElement;
+                const errorDisplay = formGroup.querySelector('.form-error-message');
+                inputElement.classList.remove('invalid');
+                if (errorDisplay) errorDisplay.innerText = '';
+            };
+            
+            const clearGuestErrors = () => {
+                clearError(document.getElementById('guest-name'));
+                clearError(document.getElementById('guest-email'));
+                clearError(document.getElementById('guest-phone'));
+            }
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (cartDrawer.classList.contains('active')) toggleCart();
+                }
+            });
+
+            const showToast = (message) => {
+                const toast = document.getElementById('toast-notification');
+                const toastMessage = document.getElementById('toast-message');
+                if (!toast || !toastMessage) return;
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => { toast.classList.remove('show'); }, 4000);
+            };
+
+            checkoutButton?.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Seu orçamento está vazio!');
+                    return;
+                }
+                clearGuestErrors();
+
+                const whatsappNumber = "5514997201523";
+                const guestNameInput = document.getElementById('guest-name');
+                const guestEmailInput = document.getElementById('guest-email');
+                const guestPhoneInput = document.getElementById('guest-phone');
+                
+                const userName = guestNameInput.value.trim();
+                const userEmail = guestEmailInput.value.trim();
+                const userPhone = guestPhoneInput.value.trim();
+                
+                let isGuestValid = true;
+                if(!userName) { setError(guestNameInput, 'O nome é obrigatório.'); isGuestValid = false; }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!userEmail || !emailRegex.test(userEmail)) { setError(guestEmailInput, 'Por favor, insira um e-mail válido.'); isGuestValid = false; }
+                if(!userPhone || userPhone.length < 10) { setError(guestPhoneInput, 'Telefone inválido (inclua o DDD).'); isGuestValid = false; }
+
+                if (!isGuestValid) return;
+                
+                const productsList = cart.map(item => `- ${item.name} (Qtd: ${item.quantity})`).join('\n');
+                const observations = document.getElementById('budget-observations-textarea').value.trim();
+
+                let message = `Olá! Gostaria de um orçamento para os seguintes itens:\n\n*Produtos:*\n${productsList}\n\n`;
+                if(observations) message += `*Observações:*\n${observations}\n\n`;
+                message += `*Meus Dados:*\n- Nome: ${userName}\n- Email: ${userEmail}\n- Telefone: ${userPhone}\n\nAguardando o contato. Obrigado!`;
+                
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+                
+                cart = [];
+                renderCart();
+                toggleCart();
+                showToast("Orçamento preparado! Finalize o envio no WhatsApp.");
+            });
+        });
+    </script>
+</body>
+</html>

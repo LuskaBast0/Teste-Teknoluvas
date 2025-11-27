@@ -215,6 +215,32 @@
             background-color: var(--color-primary);
             border-radius: 4px;
         }
+        
+        .active-filter-banner {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            display: none; /* Hidden by default */
+        }
+        
+        .clear-filter-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .clear-filter-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
 
         /* Product Cards */
         .products-grid {
@@ -241,6 +267,24 @@
         .product-card-content p { color: var(--color-text-secondary); flex-grow: 1; margin-bottom: 1rem; font-size: 0.9rem; }
         .product-card-actions { margin-top: auto; display: flex; flex-direction: column; gap: 0.5rem; }
         .product-card-actions .btn { text-align: center; width: 100%; }
+        
+        /* Product Tags */
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .tag {
+            background-color: #f3f4f6;
+            color: var(--color-primary);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px; /* Pill shape */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
 
         /* Tooltip & C.A. Button */
         .ca-button {
@@ -351,22 +395,22 @@
                         </svg>
                     </div>
                     <div class="dropdown-menu">
-                        <a href="produtos.html#eletricista" class="dropdown-item">Eletricista</a>
-                        <a href="produtos.html#antichamas" class="dropdown-item">Antichamas</a>
-                        <a href="produtos.html#soldador" class="dropdown-item">Soldador</a>
-                        <a href="produtos.html#trabalho-em-altura" class="dropdown-item">Trabalho em Altura</a>
-                        <a href="produtos.html#hospitalar" class="dropdown-item">Hospitalar</a>
-                        <a href="produtos.html#sinalizacao" class="dropdown-item">Sinalização</a>
-                        <a href="produtos.html#protecao-respiratoria" class="dropdown-item">Proteção Respiratória</a>
+                        <a href="#eletricista" class="dropdown-item">Eletricista</a>
+                        <a href="#antichamas" class="dropdown-item">Antichamas</a>
+                        <a href="#soldador" class="dropdown-item">Soldador</a>
+                        <a href="#trabalho-em-altura" class="dropdown-item">Trabalho em Altura</a>
+                        <a href="#hospitalar" class="dropdown-item">Hospitalar</a>
+                        <a href="#sinalizacao" class="dropdown-item">Sinalização</a>
+                        <a href="#protecao-respiratoria" class="dropdown-item">Proteção Respiratória</a>
                     </div>
                 </div>
                 <div class="main-nav-links">
-                    <a href="#cabeça">CABEÇA</a>
-                    <a href="#tronco">TRONCO</a>
-                    <a href="#inferiores">INFERIORES</a>
-                    <a href="#pés">PÉS</a>
-                    <a href="#luvas">LUVAS</a>
-                    <a href="#outros">OUTROS</a>
+                    <a href="#cabeça" class="nav-body-link">CABEÇA</a>
+                    <a href="#tronco" class="nav-body-link">TRONCO</a>
+                    <a href="#inferiores" class="nav-body-link">INFERIORES</a>
+                    <a href="#pés" class="nav-body-link">PÉS</a>
+                    <a href="#luvas" class="nav-body-link">LUVAS</a>
+                    <a href="#outros" class="nav-body-link">OUTROS</a>
                 </div>
             </div>
         </nav>
@@ -380,278 +424,368 @@
             </div>
         </section>
 
-        <!-- CATEGORIA: CABEÇA -->
-        <section id="cabeça" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Proteção para Cabeça</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop" alt="Capacete de Segurança Aba Frontal">
-                        <div class="product-card-content">
-                            <h3>Capacete de Segurança Aba Frontal</h3>
-                            <p>Alta resistência a impactos, com suspensão ajustável.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c1" data-product-name="Capacete de Segurança Aba Frontal" data-product-image="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop" alt="Óculos de Proteção Incolor">
-                        <div class="product-card-content">
-                            <h3>Óculos de Proteção Incolor</h3>
-                            <p>Lentes de policarbonato com tratamento antirrisco e antiembaçante.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c2" data-product-name="Óculos de Proteção Incolor" data-product-image="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop" alt="Protetor Auricular Tipo Concha">
-                        <div class="product-card-content">
-                            <h3>Protetor Auricular Tipo Concha</h3>
-                            <p>Atenuação de ruído de alta performance para ambientes industriais.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c3" data-product-name="Protetor Auricular Tipo Concha" data-product-image="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop" alt="Máscara Respiratória PFF2">
-                        <div class="product-card-content">
-                            <h3>Máscara Respiratória PFF2</h3>
-                            <p>Proteção contra poeiras, névoas e fumos. Com válvula de exalação.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="c4" data-product-name="Máscara Respiratória PFF2" data-product-image="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container">
+            <div id="active-filter-banner" class="active-filter-banner">
+                <div>Filtrando por: <strong id="filter-name">Categoria</strong></div>
+                <button id="clear-filter-btn" class="clear-filter-btn">Limpar Filtro</button>
+            </div>
+            
+            <!-- Filtered Results Grid (Hidden by default) -->
+            <div id="filtered-results-container" style="display: none; padding-bottom: 5rem;">
+                <div id="filtered-products-grid" class="products-grid">
+                    <!-- Products will be moved here via JS -->
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- CATEGORIA: TRONCO -->
-        <section id="tronco" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Proteção para o Tronco</h2>
-                <div class="products-grid">
-                     <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop" alt="Colete Refletivo">
-                        <div class="product-card-content">
-                            <h3>Colete Refletivo Tipo Blusão</h3>
-                            <p>Tecido fluorescente 100% poliéster com faixas retrorrefletivas.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t1" data-product-name="Colete Refletivo" data-product-image="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+        <div id="all-products-sections">
+            <!-- CATEGORIA: CABEÇA -->
+            <section id="cabeça" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Proteção para Cabeça</h2>
+                    <div class="products-grid">
+                        <div class="product-card" data-categories="eletricista trabalho-em-altura">
+                            <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop" alt="Capacete de Segurança Aba Frontal">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Trabalho em Altura</span>
+                                </div>
+                                <h3>Capacete de Segurança Aba Frontal</h3>
+                                <p>Alta resistência a impactos, com suspensão ajustável.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="c1" data-product-name="Capacete de Segurança Aba Frontal" data-product-image="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop" alt="Cinto Paraquedista">
-                        <div class="product-card-content">
-                            <h3>Cinto de Segurança Paraquedista</h3>
-                            <p>Para trabalho em altura, com pontos de ancoragem dorsal e peitoral.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t2" data-product-name="Cinto Paraquedista" data-product-image="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="hospitalar soldador geral">
+                            <img src="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop" alt="Óculos de Proteção Incolor">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Hospitalar</span>
+                                    <span class="tag">Geral</span>
+                                </div>
+                                <h3>Óculos de Proteção Incolor</h3>
+                                <p>Lentes de policarbonato com tratamento antirrisco e antiembaçante.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="c2" data-product-name="Óculos de Proteção Incolor" data-product-image="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop" alt="Avental de Raspa">
-                        <div class="product-card-content">
-                            <h3>Avental de Raspa Soldador</h3>
-                            <p>Proteção contra agentes abrasivos, escoriantes e térmicos.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t3" data-product-name="Avental de Raspa" data-product-image="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                         <div class="product-card" data-categories="soldador eletricista geral">
+                            <img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop" alt="Protetor Auricular Tipo Concha">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Industrial</span>
+                                    <span class="tag">Ruído</span>
+                                </div>
+                                <h3>Protetor Auricular Tipo Concha</h3>
+                                <p>Atenuação de ruído de alta performance para ambientes industriais.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="c3" data-product-name="Protetor Auricular Tipo Concha" data-product-image="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                     <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop" alt="Camisa Uniforme Profissional">
-                        <div class="product-card-content">
-                            <h3>Camisa Uniforme Profissional</h3>
-                            <p>Tecido brim leve, manga longa, ideal para eletricistas e obras.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="t4" data-product-name="Camisa Uniforme Profissional" data-product-image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="protecao-respiratoria hospitalar">
+                            <img src="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop" alt="Máscara Respiratória PFF2">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Proteção Respiratória</span>
+                                    <span class="tag">Hospitalar</span>
+                                </div>
+                                <h3>Máscara Respiratória PFF2</h3>
+                                <p>Proteção contra poeiras, névoas e fumos. Com válvula de exalação.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button" data-tooltip="Consulte o Certificado de Aprovação"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="c4" data-product-name="Máscara Respiratória PFF2" data-product-image="https://images.unsplash.com/photo-1585842378081-5c0203cc7401?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CATEGORIA: INFERIORES -->
-        <section id="inferiores" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Membros Inferiores</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop" alt="Calça Brim Uniforme">
-                        <div class="product-card-content">
-                            <h3>Calça Brim Uniforme</h3>
-                            <p>Calça resistente com reforço, ideal para construção civil e indústria.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p1" data-product-name="Calça Brim Uniforme" data-product-image="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+            <!-- CATEGORIA: TRONCO -->
+            <section id="tronco" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Proteção para o Tronco</h2>
+                    <div class="products-grid">
+                         <div class="product-card" data-categories="sinalizacao trabalho-em-altura">
+                            <img src="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop" alt="Colete Refletivo">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Sinalização</span>
+                                    <span class="tag">Trabalho em Altura</span>
+                                </div>
+                                <h3>Colete Refletivo Tipo Blusão</h3>
+                                <p>Tecido fluorescente 100% poliéster com faixas retrorrefletivas.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="t1" data-product-name="Colete Refletivo" data-product-image="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop" alt="Perneira de Segurança">
-                        <div class="product-card-content">
-                            <h3>Perneira de Segurança</h3>
-                            <p>Proteção contra picadas de animais peçonhentos e batidas.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p2" data-product-name="Perneira de Segurança" data-product-image="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="trabalho-em-altura">
+                            <img src="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop" alt="Cinto Paraquedista">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Trabalho em Altura</span>
+                                </div>
+                                <h3>Cinto de Segurança Paraquedista</h3>
+                                <p>Para trabalho em altura, com pontos de ancoragem dorsal e peitoral.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="t2" data-product-name="Cinto Paraquedista" data-product-image="https://images.unsplash.com/photo-1605218427368-35b82a933221?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca" alt="Joelheira Tática">
-                        <div class="product-card-content">
-                            <h3>Joelheira Tática de Proteção</h3>
-                            <p>Casco rígido e acolchoamento interno para conforto em trabalhos de joelhos.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="p3" data-product-name="Joelheira Tática" data-product-image="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="soldador">
+                            <img src="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop" alt="Avental de Raspa">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Soldador</span>
+                                </div>
+                                <h3>Avental de Raspa Soldador</h3>
+                                <p>Proteção contra agentes abrasivos, escoriantes e térmicos.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="t3" data-product-name="Avental de Raspa" data-product-image="https://images.unsplash.com/photo-1604054923518-e499a0a699a6?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="product-card" data-categories="eletricista antichamas">
+                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop" alt="Camisa Uniforme Profissional">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Antichamas</span>
+                                </div>
+                                <h3>Camisa Uniforme Profissional</h3>
+                                <p>Tecido brim leve, manga longa, ideal para eletricistas e obras.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="t4" data-product-name="Camisa Uniforme Profissional" data-product-image="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CATEGORIA: PÉS -->
-        <section id="pés" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Proteção para os Pés</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop" alt="Botina de Segurança Nobuck">
-                        <div class="product-card-content">
-                            <h3>Botina de Segurança Nobuck</h3>
-                            <p>Com biqueira de composite, leve e confortável para o dia todo.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b1" data-product-name="Botina de Segurança Nobuck" data-product-image="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+            <!-- CATEGORIA: INFERIORES -->
+            <section id="inferiores" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Membros Inferiores</h2>
+                    <div class="products-grid">
+                        <div class="product-card" data-categories="eletricista antichamas">
+                            <img src="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop" alt="Calça Brim Uniforme">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Antichamas</span>
+                                </div>
+                                <h3>Calça Brim Uniforme</h3>
+                                <p>Calça resistente com reforço, ideal para construção civil e indústria.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="p1" data-product-name="Calça Brim Uniforme" data-product-image="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop" alt="Bota de PVC Impermeável">
-                        <div class="product-card-content">
-                            <h3>Bota de PVC Impermeável</h3>
-                            <p>Cano médio, ideal para ambientes úmidos e com produtos químicos.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b2" data-product-name="Bota de PVC Impermeável" data-product-image="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="sinalizacao soldador">
+                            <img src="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop" alt="Perneira de Segurança">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Rural</span>
+                                    <span class="tag">Soldador</span>
+                                </div>
+                                <h3>Perneira de Segurança</h3>
+                                <p>Proteção contra picadas de animais peçonhentos e batidas.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="p2" data-product-name="Perneira de Segurança" data-product-image="https://images.unsplash.com/photo-1582218462002-3c22b9a7156c?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop" alt="Sapato de Segurança Social">
-                        <div class="product-card-content">
-                            <h3>Sapato de Segurança Social</h3>
-                            <p>Estilo e proteção para engenheiros e área administrativa.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="b3" data-product-name="Sapato de Segurança Social" data-product-image="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="trabalho-em-altura">
+                            <img src="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca" alt="Joelheira Tática">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Trabalho em Altura</span>
+                                </div>
+                                <h3>Joelheira Tática de Proteção</h3>
+                                <p>Casco rígido e acolchoamento interno para conforto em trabalhos de joelhos.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="p3" data-product-name="Joelheira Tática" data-product-image="https://placehold.co/600x400/e2e8f0/475569?text=Joelheira+Tatíca">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CATEGORIA: LUVAS -->
-        <section id="luvas" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Luvas de Proteção</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop" alt="Luva de Vaqueta Mista">
-                        <div class="product-card-content">
-                            <h3>Luva de Vaqueta Mista</h3>
-                            <p>Resistência mecânica para trabalhos pesados e manuseio de ferramentas.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l1" data-product-name="Luva de Vaqueta Mista" data-product-image="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+            <!-- CATEGORIA: PÉS -->
+            <section id="pés" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Proteção para os Pés</h2>
+                    <div class="products-grid">
+                        <div class="product-card" data-categories="eletricista">
+                            <img src="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop" alt="Botina de Segurança Nobuck">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Industrial</span>
+                                </div>
+                                <h3>Botina de Segurança Nobuck</h3>
+                                <p>Com biqueira de composite, leve e confortável para o dia todo.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="b1" data-product-name="Botina de Segurança Nobuck" data-product-image="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop" alt="Luva Nitrílica Verde">
-                        <div class="product-card-content">
-                            <h3>Luva Nitrílica Química</h3>
-                            <p>Proteção contra agentes químicos, óleos e solventes.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l2" data-product-name="Luva Nitrílica Química" data-product-image="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="hospitalar">
+                            <img src="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop" alt="Bota de PVC Impermeável">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Hospitalar</span>
+                                    <span class="tag">Impermeável</span>
+                                </div>
+                                <h3>Bota de PVC Impermeável</h3>
+                                <p>Cano médio, ideal para ambientes úmidos e com produtos químicos.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="b2" data-product-name="Bota de PVC Impermeável" data-product-image="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop" alt="Luva de Malha Pigmentada">
-                        <div class="product-card-content">
-                            <h3>Luva de Malha Pigmentada</h3>
-                            <p>Antiderrapante para manuseio de caixas e materiais secos.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l3" data-product-name="Luva de Malha Pigmentada" data-product-image="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop" alt="Luva de Alta Tensão">
-                        <div class="product-card-content">
-                            <h3>Luva Isolante de Borracha</h3>
-                            <p>Proteção essencial para eletricistas contra choques elétricos.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="l4" data-product-name="Luva Isolante de Borracha" data-product-image="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="geral">
+                            <img src="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop" alt="Sapato de Segurança Social">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Administrativo</span>
+                                </div>
+                                <h3>Sapato de Segurança Social</h3>
+                                <p>Estilo e proteção para engenheiros e área administrativa.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="b3" data-product-name="Sapato de Segurança Social" data-product-image="https://images.unsplash.com/photo-1595303526913-c7037797ebe7?q=80&w=1965&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CATEGORIA: OUTROS -->
-        <section id="outros" class="category-section">
-            <div class="container">
-                <h2 class="category-title">Outros Equipamentos</h2>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop" alt="Cone de Sinalização">
-                        <div class="product-card-content">
-                            <h3>Cone de Sinalização</h3>
-                            <p>PVC flexível com faixas refletivas para segurança viária e obras.</p>
-                            <div class="product-card-actions">
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="o1" data-product-name="Cone de Sinalização" data-product-image="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+            <!-- CATEGORIA: LUVAS -->
+            <section id="luvas" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Luvas de Proteção</h2>
+                    <div class="products-grid">
+                        <div class="product-card" data-categories="soldador trabalho-em-altura">
+                            <img src="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop" alt="Luva de Vaqueta Mista">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Soldador</span>
+                                    <span class="tag">Mecânica</span>
+                                </div>
+                                <h3>Luva de Vaqueta Mista</h3>
+                                <p>Resistência mecânica para trabalhos pesados e manuseio de ferramentas.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="l1" data-product-name="Luva de Vaqueta Mista" data-product-image="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop" alt="Extintor de Incêndio">
-                        <div class="product-card-content">
-                            <h3>Extintor de Incêndio ABC</h3>
-                            <p>Essencial para combate a princípios de incêndio em diversas classes.</p>
-                            <div class="product-card-actions">
-                                <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
-                                <button class="btn btn-primary add-to-cart-btn" data-product-id="o2" data-product-name="Extintor de Incêndio ABC" data-product-image="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                        <div class="product-card" data-categories="hospitalar">
+                            <img src="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop" alt="Luva Nitrílica Verde">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Hospitalar</span>
+                                    <span class="tag">Química</span>
+                                </div>
+                                <h3>Luva Nitrílica Química</h3>
+                                <p>Proteção contra agentes químicos, óleos e solventes.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="l2" data-product-name="Luva Nitrílica Química" data-product-image="https://images.unsplash.com/photo-1595460517929-c7c4b18c5453?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-categories="geral">
+                            <img src="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop" alt="Luva de Malha Pigmentada">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Geral</span>
+                                    <span class="tag">Logística</span>
+                                </div>
+                                <h3>Luva de Malha Pigmentada</h3>
+                                <p>Antiderrapante para manuseio de caixas e materiais secos.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="l3" data-product-name="Luva de Malha Pigmentada" data-product-image="https://images.unsplash.com/photo-1621255562137-b956191147a4?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="product-card" data-categories="eletricista">
+                            <img src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop" alt="Luva de Alta Tensão">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Alta Tensão</span>
+                                </div>
+                                <h3>Luva Isolante de Borracha</h3>
+                                <p>Proteção essencial para eletricistas contra choques elétricos.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="l4" data-product-name="Luva Isolante de Borracha" data-product-image="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- CATEGORIA: OUTROS -->
+            <section id="outros" class="category-section">
+                <div class="container">
+                    <h2 class="category-title">Outros Equipamentos</h2>
+                    <div class="products-grid">
+                        <div class="product-card" data-categories="sinalizacao">
+                            <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop" alt="Cone de Sinalização">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Sinalização</span>
+                                </div>
+                                <h3>Cone de Sinalização</h3>
+                                <p>PVC flexível com faixas refletivas para segurança viária e obras.</p>
+                                <div class="product-card-actions">
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="o1" data-product-name="Cone de Sinalização" data-product-image="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-categories="sinalizacao geral">
+                            <img src="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop" alt="Extintor de Incêndio">
+                            <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Segurança</span>
+                                </div>
+                                <h3>Extintor de Incêndio ABC</h3>
+                                <p>Essencial para combate a princípios de incêndio em diversas classes.</p>
+                                <div class="product-card-actions">
+                                    <a href="#" class="btn btn-neutral ca-button"><span>Consultar C.A.</span><svg class="icon-info" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></a>
+                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="o2" data-product-name="Extintor de Incêndio ABC" data-product-image="https://images.unsplash.com/photo-1625960081376-80f4f95d8516?q=80&w=1932&auto=format&fit=crop">Adicionar ao Orçamento</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
     </main>
 
@@ -744,6 +878,91 @@
     <!-- Script de Funcionalidade (Carrinho e Drawer) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Category Filtering Logic ---
+            const allProductsSections = document.getElementById('all-products-sections');
+            const filteredResultsContainer = document.getElementById('filtered-results-container');
+            const filteredProductsGrid = document.getElementById('filtered-products-grid');
+            const activeFilterBanner = document.getElementById('active-filter-banner');
+            const filterNameSpan = document.getElementById('filter-name');
+            const clearFilterBtn = document.getElementById('clear-filter-btn');
+            
+            // Collect all product cards for later filtering
+            const allProductCards = Array.from(document.querySelectorAll('.product-card'));
+            
+            const handleHashChange = () => {
+                const hash = window.location.hash.substring(1); // Remove '#'
+                const bodyParts = ['cabeça', 'tronco', 'inferiores', 'pés', 'luvas', 'outros'];
+                
+                // If no hash or hash is a body part, show default view (all sections)
+                if (!hash || bodyParts.includes(decodeURIComponent(hash).toLowerCase())) {
+                    resetFilter();
+                    
+                    // If it is a body part, let default browser behavior scroll to it (or manual scroll if needed)
+                    if (hash) {
+                         const element = document.getElementById(hash);
+                         if(element) element.scrollIntoView();
+                    }
+                    return;
+                }
+                
+                // It's a category filter (e.g. #eletricista)
+                applyFilter(hash);
+            };
+
+            const applyFilter = (categorySlug) => {
+                // Hide all sections
+                allProductsSections.style.display = 'none';
+                filteredResultsContainer.style.display = 'block';
+                activeFilterBanner.style.display = 'flex';
+                
+                // Update banner text (Capitalize first letter)
+                const categoryName = categorySlug.replace(/-/g, ' ');
+                filterNameSpan.textContent = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+                
+                // Filter products
+                filteredProductsGrid.innerHTML = ''; // Clear current grid
+                let hasResults = false;
+                
+                allProductCards.forEach(card => {
+                    const categories = card.dataset.categories ? card.dataset.categories.split(' ') : [];
+                    if (categories.includes(categorySlug)) {
+                        // Clone card to show in filtered grid
+                        const clone = card.cloneNode(true);
+                        // Re-attach event listener to the clone's button (since cloning removes listeners)
+                        // Note: Simpler approach is to just move the DOM elements, but then we lose them from original sections.
+                        // Better to clone and delegate events or handle re-attachment.
+                        // For simplicity in this static structure, let's clone and setup event delegation on the grid container.
+                        filteredProductsGrid.appendChild(clone);
+                        hasResults = true;
+                    }
+                });
+                
+                if (!hasResults) {
+                    filteredProductsGrid.innerHTML = '<p class="text-center" style="grid-column: 1/-1; padding: 2rem;">Nenhum produto encontrado para esta categoria.</p>';
+                }
+            };
+            
+            const resetFilter = () => {
+                allProductsSections.style.display = 'block';
+                filteredResultsContainer.style.display = 'none';
+                activeFilterBanner.style.display = 'none';
+                filteredProductsGrid.innerHTML = '';
+            };
+            
+            clearFilterBtn.addEventListener('click', () => {
+                window.location.hash = '';
+                // resetFilter() will be called by hashchange event, or we can force it:
+                // history.pushState("", document.title, window.location.pathname + window.location.search);
+                // handleHashChange();
+            });
+
+            window.addEventListener('hashchange', handleHashChange);
+            // Check initial load
+            if(window.location.hash) {
+                handleHashChange();
+            }
+
             // --- Shared Drawer Logic ---
             const drawerOverlay = document.getElementById('drawer-overlay');
             const cartDrawer = document.getElementById('cart-drawer');
@@ -758,7 +977,7 @@
             // --- Budget (Shopping Cart) Logic ---
             const cartButton = document.getElementById('cart-button');
             const cartCloseButton = document.getElementById('cart-close-button');
-            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn'); // Only picks up initial buttons
             const cartItemsContainer = document.getElementById('cart-items');
             const cartBadge = document.getElementById('cart-badge');
             const cartEmptyMessage = document.getElementById('cart-empty-message');
@@ -840,9 +1059,10 @@
                 cartBadge.classList.toggle('visible', totalItems > 0);
             };
 
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const clickedButton = e.currentTarget;
+            // Main add to cart handler (delegation to support cloned elements)
+            document.addEventListener('click', (e) => {
+                if(e.target.matches('.add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                    const clickedButton = e.target.matches('.add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
                     const { productId, productName, productImage } = clickedButton.dataset;
                     if (!productId || !productName || !productImage) return;
                     if (clickedButton.disabled) return;
@@ -891,7 +1111,7 @@
                         clickedButton.innerHTML = originalContent;
                         clickedButton.disabled = false;
                     }, 800);
-                });
+                }
             });
             
             cartItemsContainer?.addEventListener('click', (e) => {

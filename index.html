@@ -685,6 +685,24 @@
             color: var(--color-primary);
             margin-bottom: 1rem;
         }
+        
+        /* Product Tags */
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .tag {
+            background-color: #f3f4f6;
+            color: var(--color-primary);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px; /* Pill shape */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
 
         .product-card-actions {
             margin-top: auto;
@@ -1582,6 +1600,10 @@
                         <div class="product-card scroll-animate">
                             <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="Intranet Corporativa Inteligente">
                             <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Software</span>
+                                    <span class="tag">Corporativo</span>
+                                </div>
                                 <h3>Intranet Corporativa Inteligente</h3>
                                 <p>Conecte sua equipe, centralize documentos e automatize comunicados com um portal seguro.</p>
                                 <div class="product-card-actions">
@@ -1598,6 +1620,10 @@
                         <div class="product-card scroll-animate">
                             <img src="https://images.unsplash.com/photo-1587825140708-df8769a5b8de?q=80&w=2070&auto=format&fit=crop" alt="Sistema de Gestão (ERP) na Nuvem">
                             <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Software</span>
+                                    <span class="tag">Gestão</span>
+                                </div>
                                 <h3>Sistema de Gestão (ERP) na Nuvem</h3>
                                 <p>Unifique finanças, estoque e operações com um ERP flexível e acessível de qualquer lugar.</p>
                                 <div class="product-card-actions">
@@ -1614,6 +1640,10 @@
                         <div class="product-card scroll-animate">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Plataforma de Business Intelligence (BI)">
                             <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Dados</span>
+                                    <span class="tag">BI</span>
+                                </div>
                                 <h3>Plataforma de Business Intelligence (BI)</h3>
                                 <p>Transforme dados em dashboards interativos para decisões estratégicas mais rápidas.</p>
                                 <div class="product-card-actions">
@@ -1630,6 +1660,10 @@
                         <div class="product-card scroll-animate">
                             <img src="https://images.unsplash.com/photo-1677756119517-756a188d2278?q=80&w=1974&auto=format&fit=crop" alt="Automação de Processos (RPA)">
                             <div class="product-card-content">
+                                <div class="product-tags">
+                                    <span class="tag">Automação</span>
+                                    <span class="tag">IA</span>
+                                </div>
                                 <h3>Automação de Processos (RPA)</h3>
                                 <p>Elimine tarefas repetitivas com robôs de software que otimizam fluxos de trabalho.</p>
                                 <div class="product-card-actions">
@@ -1662,6 +1696,10 @@
                                 <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop" alt="Capacete de Segurança">
                             </div>
                             <div class="slide-text-wrapper">
+                                <div class="product-tags">
+                                    <span class="tag">Eletricista</span>
+                                    <span class="tag">Obras</span>
+                                </div>
                                 <h4 class="slide-title">Capacete de Segurança</h4>
                                 <div class="slide-actions">
                                      <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
@@ -1678,6 +1716,10 @@
                                 <img src="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=1964&auto=format&fit=crop" alt="Luvas de Proteção">
                             </div>
                             <div class="slide-text-wrapper">
+                                <div class="product-tags">
+                                    <span class="tag">Proteção</span>
+                                    <span class="tag">Mecânica</span>
+                                </div>
                                 <h4 class="slide-title">Luvas de Proteção</h4>
                                 <div class="slide-actions">
                                      <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
@@ -1694,6 +1736,10 @@
                                 <img src="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=1974&auto=format&fit=crop" alt="Botas de Segurança">
                             </div>
                             <div class="slide-text-wrapper">
+                                <div class="product-tags">
+                                    <span class="tag">EPI</span>
+                                    <span class="tag">Industrial</span>
+                                </div>
                                 <h4 class="slide-title">Botas de Segurança</h4>
                                 <div class="slide-actions">
                                      <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
@@ -1710,6 +1756,10 @@
                                 <img src="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop" alt="Óculos de Proteção">
                             </div>
                             <div class="slide-text-wrapper">
+                                <div class="product-tags">
+                                    <span class="tag">Hospitalar</span>
+                                    <span class="tag">Química</span>
+                                </div>
                                 <h4 class="slide-title">Óculos de Proteção</h4>
                                 <div class="slide-actions">
                                      <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
@@ -1727,237 +1777,6 @@
                     <button class="perspective-carousel-nav next" aria-label="Próximo">
                         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ============================================= -->
-        <!--                 FEATURE SECTION 4             -->
-        <!-- ============================================= -->
-        <section id="ia" class="feature-section alt-bg section-padding">
-            <div class="container">
-                <div class="feature-content reverse scroll-animate">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1620712943543-2858200f745a?q=80&w=2069&auto=format&fit=crop" alt="Visualização abstrata de dados e inteligência artificial">
-                    </div>
-                    <div class="feature-text">
-                        <h3>Inteligência de Dados e IA</h3>
-                        <p>Desbloqueie o potencial dos seus dados. Criamos soluções de inteligência artificial que transformam informações em vantagem competitiva, com modelos de machine learning para prever tendências, automatizar tarefas e personalizar a experiência do seu cliente.</p>
-                        <ul class="feature-list">
-                           <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Análise Preditiva</span></li>
-                           <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Dashboards Inteligentes</span></li>
-                           <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Modelos de Machine Learning</span></li>
-                           <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Automação com IA</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- PRODUTOS RELACIONADOS 4 -->
-                <div class="related-products related-products-bg-4 scroll-animate">
-                    <h3 class="subsection-title">Produtos <span class="highlight">Relacionados</span></h3>
-                    <div class="products-grid">
-                        <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=2070&auto=format&fit=crop" alt="Motor de Recomendação">
-                            <div class="product-card-content">
-                                <h3>Motor de Recomendação</h3>
-                                <p>Personalize a experiência do usuário com sugestões de produtos inteligentes.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="13" data-product-name="Motor de Recomendação" data-product-image="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" alt="Análise de Sentimento">
-                            <div class="product-card-content">
-                                <h3>Análise de Sentimento</h3>
-                                <p>Entenda a opinião dos seus clientes em tempo real a partir de redes sociais e reviews.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="14" data-product-name="Análise de Sentimento" data-product-image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop" alt="Previsão de Demanda">
-                            <div class="product-card-content">
-                                <h3>Previsão de Demanda</h3>
-                                <p>Otimize seu estoque e logística com previsões de vendas baseadas em IA.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="15" data-product-name="Previsão de Demanda" data-product-image="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop" alt="Chatbot Cognitivo">
-                            <div class="product-card-content">
-                                <h3>Chatbot Cognitivo</h3>
-                                <p>Automatize o atendimento ao cliente com um assistente virtual que aprende e evolui.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="16" data-product-name="Chatbot Cognitivo" data-product-image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================= -->
-        <!--                TESTIMONIALS SECTION           -->
-        <!-- ============================================= -->
-        <section id="testimonials" class="feature-section section-padding">
-            <div class="container">
-                <h2 class="section-title text-center scroll-animate">O Que Nossos <span class="highlight">Clientes Dizem</span></h2>
-                <p class="text-center scroll-animate" style="max-width: 800px; margin: -2rem auto 4rem; color: var(--color-text-secondary);">
-                    A confiança dos nossos clientes é o nosso maior ativo. Veja como nossas soluções transformaram seus negócios.
-                </p>
-                <div class="testimonials-grid">
-                    <!-- Testimonial Card 1 -->
-                    <div class="testimonial-card scroll-animate">
-                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <p class="testimonial-text">"A plataforma de e-commerce que eles desenvolveram superou todas as nossas expectativas. As vendas aumentaram 40% no primeiro trimestre!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Foto de Maria Silva" class="author-image">
-                            <div class="author-info">
-                                <span class="author-name">Maria Silva</span>
-                                <span class="author-title">CEO, Loja da Maria</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial Card 2 -->
-                    <div class="testimonial-card scroll-animate">
-                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <p class="testimonial-text">"O sistema de gestão interna otimizou nossos processos de uma forma que não achávamos ser possível. Economizamos centenas de horas de trabalho manual."</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026705d" alt="Foto de João Pereira" class="author-image">
-                            <div class="author-info">
-                                <span class="author-name">João Pereira</span>
-                                <span class="author-title">Diretor de Operações, Indústria Forte</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial Card 3 -->
-                    <div class="testimonial-card scroll-animate">
-                         <svg class="quote-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <p class="testimonial-text">"A equipe não apenas entregou um produto de alta qualidade, mas também ofereceu um suporte incrível durante todo o projeto. Recomendo fortemente!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026706d" alt="Foto de Ana Costa" class="author-image">
-                            <div class="author-info">
-                                <span class="author-name">Ana Costa</span>
-                                <span class="author-title">Gerente de TI, Tech Solutions</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ============================================= -->
-        <!--           INTERACTIVE PRODUCT SECTION         -->
-        <!-- ============================================= -->
-        <section id="interactive-product" class="feature-section alt-bg section-padding">
-            <div class="container">
-                <h2 class="section-title text-center scroll-animate">Produto <span class="highlight">em Destaque</span></h2>
-                <div class="product-interactive-grid scroll-animate">
-                    <!-- Coluna do Carrossel -->
-                    <div class="product-carousel-wrapper">
-                        <div class="product-carousel">
-                            <div class="product-carousel-track">
-                                <div class="product-carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1964&auto=format&fit=crop" alt="Camisa Premium na cor Azul">
-                                </div>
-                                <div class="product-carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1622470953794-3ed961c3765e?q=80&w=1964&auto=format&fit=crop" alt="Camisa Premium na cor Cinza">
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-nav-button prev" id="carousel-prev-btn" aria-label="Imagem Anterior">
-                             <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <button class="carousel-nav-button next" id="carousel-next-btn" aria-label="Próxima Imagem">
-                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                        <div class="color-swatches">
-                            <button class="color-swatch" data-slide-index="0" aria-label="Selecionar cor Azul">
-                                <div class="color-swatch-inner" style="background-color: #00529B;"></div>
-                            </button>
-                            <button class="color-swatch" data-slide-index="1" aria-label="Selecionar cor Cinza">
-                                <div class="color-swatch-inner" style="background-color: #4b5563;"></div>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Coluna de Detalhes -->
-                    <div class="product-interactive-details">
-                        <h3>Camisa Premium</h3>
-                        <p>Feita com algodão pima de alta qualidade, esta camisa oferece conforto e estilo incomparáveis. Perfeita para qualquer ocasião, do casual ao formal. Escolha sua cor favorita.</p>
-                        <button id="interactive-add-to-cart-btn" class="btn btn-primary add-to-cart-btn" data-product-id="17">Adicionar ao Orçamento</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================= -->
-        <!--        INTERACTIVE PRODUCT SECTION 2 (NEW)    -->
-        <!-- ============================================= -->
-        <section id="interactive-product-2" class="feature-section section-padding">
-            <div class="container">
-                <h2 class="section-title text-center scroll-animate">Outro Destaque <span class="highlight">Imperdível</span></h2>
-                <div class="product-interactive-grid scroll-animate">
-                    <!-- Coluna de Detalhes - INVERTED -->
-                    <div class="product-interactive-details">
-                        <h3>Jaqueta Corta-Vento</h3>
-                        <p>Proteção e estilo para qualquer clima. Leve, resistente à água e com design moderno. Ideal para o dia a dia e atividades ao ar livre.</p>
-                        <button id="interactive-add-to-cart-btn-2" class="btn btn-primary add-to-cart-btn" data-product-id="18">Adicionar ao Orçamento</button>
-                    </div>
-                    <!-- Coluna do Carrossel - INVERTED -->
-                    <div class="product-carousel-wrapper">
-                        <div class="product-carousel">
-                            <div class="product-carousel-track">
-                                <div class="product-carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1591047139829-d916b5099c75?q=80&w=1974&auto=format&fit=crop" alt="Jaqueta Corta-Vento na cor Preta">
-                                </div>
-                                <div class="product-carousel-slide">
-                                    <img src="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=1964&auto=format&fit=crop" alt="Jaqueta Corta-Vento na cor Verde">
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-nav-button prev" id="carousel-prev-btn-2" aria-label="Imagem Anterior">
-                             <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <button class="carousel-nav-button next" id="carousel-next-btn-2" aria-label="Próxima Imagem">
-                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
-                        <div class="color-swatches">
-                            <button class="color-swatch" data-slide-index="0" aria-label="Selecionar cor Preta">
-                                <div class="color-swatch-inner" style="background-color: #1f2937;"></div>
-                            </button>
-                            <button class="color-swatch" data-slide-index="1" aria-label="Selecionar cor Verde">
-                                <div class="color-swatch-inner" style="background-color: #166534;"></div>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

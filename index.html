@@ -356,7 +356,7 @@
             min-height: 48px;
         }
 
-        /* --- Estilo Dropdown em Escada --- */
+        /* --- Estilo Dropdown em Escada (Categorias Principais) --- */
         .dropdown-wrapper {
             position: relative;
         }
@@ -392,7 +392,7 @@
             top: 100%;
             left: 0;
             background-color: var(--color-white);
-            min-width: 250px;
+            min-width: 260px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border-radius: 0 0 0.5rem 0.5rem;
             padding: 0.5rem 0;
@@ -411,8 +411,16 @@
             transform: translateY(0);
         }
 
+        /* Estilo para os itens do dropdown principal que abrem o menu lateral (Flyout) */
+        .dropdown-item-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
         .dropdown-item {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0.75rem 1.5rem;
             color: var(--color-text-primary);
             text-decoration: none;
@@ -420,25 +428,64 @@
             border-left: 4px solid transparent;
             transition: all 0.2s ease;
             font-size: 0.95rem;
+            width: 100%;
         }
 
-        .dropdown-item:hover {
+        .dropdown-item-wrapper:hover > .dropdown-item {
             background-color: #f3f4f6;
             color: var(--color-primary);
             border-left-color: var(--color-primary);
-            padding-left: 2rem; /* Efeito de degrau/escada ao passar o mouse */
+            padding-left: 2rem;
         }
+        
+        .flyout-chevron {
+            width: 1rem;
+            height: 1rem;
+            color: #9ca3af;
+        }
+
+        /* O Menu Lateral (Flyout) */
+        .dropdown-flyout {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 450px;
+            min-height: 100%;
+            background-color: var(--color-white);
+            box-shadow: 4px 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0.5rem 0.5rem 0.5rem;
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 101;
+            overflow: hidden;
+        }
+
+        .dropdown-item-wrapper:hover .dropdown-flyout {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* --- Fim Estilo Dropdown --- */
 
-
+        /* --- Submenus para Itens de Navegação --- */
         .main-nav-links {
             display: flex;
             align-items: center;
             gap: 1.5rem;
             margin-left: 1rem;
+            height: 100%;
         }
 
-        .main-nav-links a {
+        .nav-item-wrapper {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item-wrapper > a {
             color: var(--color-white);
             text-decoration: none;
             font-weight: 700;
@@ -446,8 +493,12 @@
             padding: 0.5rem 0;
             position: relative;
             transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
-        .main-nav-links a::after {
+
+        .nav-item-wrapper > a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -459,9 +510,69 @@
             transform-origin: bottom center;
             transition: transform 0.25s ease-out;
         }
-        .main-nav-links a:hover::after {
+
+        .nav-item-wrapper:hover > a::after {
             transform: scaleX(1);
         }
+
+        /* Estilo do Dropdown dos Itens de Navegação */
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--color-white);
+            min-width: 380px; /* Width ajustado para caber imagem */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0 0.5rem 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            flex-direction: row; /* Layout horizontal */
+            overflow: hidden;
+        }
+
+        .nav-item-wrapper:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown-links-group {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            flex: 1;
+        }
+
+        .nav-dropdown-link {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-dropdown-link:hover {
+            background-color: #f3f4f6;
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            padding-left: 1.5rem;
+        }
+
+        .nav-dropdown-featured-img {
+            width: 250px; /* Ajustado para melhor visualização da imagem 500x500 */
+            object-fit: cover;
+            object-position: center;
+            border-left: 1px solid #f3f4f6;
+        }
+        /* --- Fim Submenus --- */
+
 
         @keyframes cart-shake {
             10%, 90% { transform: translate3d(-1px, 0, 0); }
@@ -522,6 +633,75 @@
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+
+        /* Category Carousel Section */
+        #category-carousel-section {
+            background-color: var(--color-white);
+        }
+        .category-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent 100%);
+            margin-top: -1rem; /* Adjust spacing */
+        }
+
+        .category-carousel-track {
+            display: flex;
+            width: calc(240px * 20); /* Adjusted for new slide width */
+            animation: scroll 90s linear infinite; /* Slowed down from 65s */
+        }
+
+        .category-carousel:hover .category-carousel-track {
+            animation-play-state: paused;
+        }
+
+        .category-slide {
+            flex-shrink: 0;
+            width: 240px; /* Adjusted width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0.5rem; /* Added vertical padding */
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .category-item img {
+            width: 200px;
+            height: 300px; /* Alterado para formato vertical (retrato) */
+            object-fit: cover;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .category-item span {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .category-slide:hover .category-item img {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+            border-color: var(--color-primary-dark);
+        }
+
+        .category-slide:hover .category-item span {
+            color: var(--color-primary-dark);
         }
 
         /* Logo Carousel Section */
@@ -1528,22 +1708,223 @@
                         </svg>
                     </div>
                     <div class="dropdown-menu">
-                        <a href="produtos.html#eletricista" class="dropdown-item">Eletricista</a>
-                        <a href="produtos.html#antichamas" class="dropdown-item">Antichamas</a>
-                        <a href="produtos.html#soldador" class="dropdown-item">Soldador</a>
-                        <a href="produtos.html#trabalho-em-altura" class="dropdown-item">Trabalho em Altura</a>
-                        <a href="produtos.html#hospitalar" class="dropdown-item">Hospitalar</a>
-                        <a href="produtos.html#sinalizacao" class="dropdown-item">Sinalização</a>
-                        <a href="produtos.html#protecao-respiratoria" class="dropdown-item">Proteção Respiratória</a>
+                        <!-- Categoria: Eletricista -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#eletricista" class="dropdown-item">
+                                Eletricista
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#eletricista" class="nav-dropdown-link">Luvas Isolantes</a>
+                                    <a href="produtos.html#eletricista" class="nav-dropdown-link">Capacetes Dieletricos</a>
+                                    <a href="produtos.html#eletricista" class="nav-dropdown-link">Vestimenta NR10</a>
+                                    <a href="produtos.html#eletricista" class="nav-dropdown-link">Botinas sem Componentes Metálicos</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=500&h=500&auto=format&fit=crop" alt="Eletricista" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Antichamas -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#antichamas" class="dropdown-item">
+                                Antichamas
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#antichamas" class="nav-dropdown-link">Uniformes FR</a>
+                                    <a href="produtos.html#antichamas" class="nav-dropdown-link">Capuz Balaclava</a>
+                                    <a href="produtos.html#antichamas" class="nav-dropdown-link">Luvas de Nomex</a>
+                                    <a href="produtos.html#antichamas" class="nav-dropdown-link">Macacões de Segurança</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1595769816263-9b910be24d5f?q=80&w=500&h=500&auto=format&fit=crop" alt="Antichamas" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Soldador -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#soldador" class="dropdown-item">
+                                Soldador
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#soldador" class="nav-dropdown-link">Máscara de Solda Automática</a>
+                                    <a href="produtos.html#soldador" class="nav-dropdown-link">Avental de Raspa</a>
+                                    <a href="produtos.html#soldador" class="nav-dropdown-link">Luvas de Raspa</a>
+                                    <a href="produtos.html#soldador" class="nav-dropdown-link">Perneiras de Raspa</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=500&h=500&auto=format&fit=crop" alt="Soldador" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Trabalho em Altura -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#trabalho-em-altura" class="dropdown-item">
+                                Trabalho em Altura
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#trabalho-em-altura" class="nav-dropdown-link">Cintos Paraquedista</a>
+                                    <a href="produtos.html#trabalho-em-altura" class="nav-dropdown-link">Talabartes</a>
+                                    <a href="produtos.html#trabalho-em-altura" class="nav-dropdown-link">Trava-quedas</a>
+                                    <a href="produtos.html#trabalho-em-altura" class="nav-dropdown-link">Mosquetões</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1596496181871-9681eacf9764?q=80&w=500&h=500&auto=format&fit=crop" alt="Trabalho em Altura" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                         <!-- Categoria: Hospitalar -->
+                         <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#hospitalar" class="dropdown-item">
+                                Hospitalar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#hospitalar" class="nav-dropdown-link">Luvas de Procedimento</a>
+                                    <a href="produtos.html#hospitalar" class="nav-dropdown-link">Máscaras Cirúrgicas</a>
+                                    <a href="produtos.html#hospitalar" class="nav-dropdown-link">Toucas Descartáveis</a>
+                                    <a href="produtos.html#hospitalar" class="nav-dropdown-link">Propés</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=500&h=500&auto=format&fit=crop" alt="Hospitalar" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Sinalização -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#sinalizacao" class="dropdown-item">
+                                Sinalização
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#sinalizacao" class="nav-dropdown-link">Cones</a>
+                                    <a href="produtos.html#sinalizacao" class="nav-dropdown-link">Fitas Zebradas</a>
+                                    <a href="produtos.html#sinalizacao" class="nav-dropdown-link">Pedestais</a>
+                                    <a href="produtos.html#sinalizacao" class="nav-dropdown-link">Correntes Plásticas</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1531346300883-93668f44d82c?q=80&w=500&h=500&auto=format&fit=crop" alt="Sinalização" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                         <!-- Categoria: Proteção Respiratória -->
+                         <div class="dropdown-item-wrapper">
+                            <a href="produtos.html#protecao-respiratoria" class="dropdown-item">
+                                Proteção Respiratória
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="produtos.html#protecao-respiratoria" class="nav-dropdown-link">Respiradores PFF1/PFF2</a>
+                                    <a href="produtos.html#protecao-respiratoria" class="nav-dropdown-link">Máscaras Semifaciais</a>
+                                    <a href="produtos.html#protecao-respiratoria" class="nav-dropdown-link">Filtros Químicos</a>
+                                    <a href="produtos.html#protecao-respiratoria" class="nav-dropdown-link">Filtros Mecânicos</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=500&h=500&auto=format&fit=crop" alt="Proteção Respiratória" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="main-nav-links">
-                    <a href="produtos.html#cabeça">CABEÇA</a>
-                    <a href="produtos.html#tronco">TRONCO</a>
-                    <a href="produtos.html#inferiores">INFERIORES</a>
-                    <a href="produtos.html#pés">PÉS</a>
-                    <a href="produtos.html#luvas">LUVAS</a>
-                    <a href="produtos.html#outros">OUTROS</a>
+                    <div class="nav-item-wrapper">
+                        <a href="#cabeça">CALÇADOS</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#cabeça" class="nav-dropdown-link">tenis ocupacional</a>
+                                <a href="#cabeça" class="nav-dropdown-link">biqueira de pvc</a>
+                                <a href="#cabeça" class="nav-dropdown-link">biqueira de aço</a>
+                                <a href="#cabeça" class="nav-dropdown-link">botina</a>
+                            </div>
+                            <img src="b calçado.png" alt="Categoria Cabeça" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#tronco">EPIS PARA ALTURA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#tronco" class="nav-dropdown-link">talabartes</a>
+                                <a href="#tronco" class="nav-dropdown-link">Cintos Paraquedista</a>
+                                <a href="#tronco" class="nav-dropdown-link">oculos antirisco</a>
+                                <a href="#tronco" class="nav-dropdown-link">trava quedas</a>
+                            </div>
+                            <img src="b cinto.png" alt="Categoria Tronco" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#inferiores">LUVAS</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#inferiores" class="nav-dropdown-link">soldador</a>
+                                <a href="#inferiores" class="nav-dropdown-link">vaqueta</a>
+                                <a href="#inferiores" class="nav-dropdown-link">raspa</a>
+                                <a href="#inferiores" class="nav-dropdown-link">petroleira</a>
+                            </div>
+                            <img src="b luva.png" alt="Categoria Inferiores" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#pés">PROTEÇÃO RESPIRATORIA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#pés" class="nav-dropdown-link">pff2</a>
+                                <a href="#pés" class="nav-dropdown-link">mascara com filtro</a>
+                                <a href="#pés" class="nav-dropdown-link">mascara sem filtro</a>
+                                <a href="#pés" class="nav-dropdown-link">inalador</a>
+                            </div>
+                            <img src="b respiração.png" alt="Categoria Pés" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#luvas">PROTEÇÃO AUDITIVA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#luvas" class="nav-dropdown-link">abafador</a>
+                                <a href="#luvas" class="nav-dropdown-link">plugin</a>
+                                <a href="#luvas" class="nav-dropdown-link">espuma para abafador</a>
+                                <a href="#luvas" class="nav-dropdown-link">abafador de Capacete</a>
+                            </div>
+                            <img src="b fone.png" alt="Categoria Luvas" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">NR10</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">calça</a>
+                                <a href="#outros" class="nav-dropdown-link">camisa</a>
+                                <a href="#outros" class="nav-dropdown-link">calçado</a>
+                                <a href="#outros" class="nav-dropdown-link">luva</a>
+                            </div>
+                            <img src="b energia.png" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">Roupas Retardante a Chamas</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">blusão</a>
+                                <a href="#outros" class="nav-dropdown-link">calça</a>
+                                <a href="#outros" class="nav-dropdown-link">luva</a>
+                                <a href="#outros" class="nav-dropdown-link">perneira</a>
+                            </div>
+                            <img src="b antichama.png" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">Epis para Soldador</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">luvas</a>
+                                <a href="#outros" class="nav-dropdown-link">mascara</a>
+                                <a href="#outros" class="nav-dropdown-link">viseira</a>
+                                <a href="#outros" class="nav-dropdown-link">vestimentas</a>
+                            </div>
+                            <img src="b solda.png" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -1557,129 +1938,333 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text scroll-animate">
-                        <h1>Criando <span class="gradient-text">Experiências Digitais</span></h1>
-                        <p>Construímos aplicações web bonitas, responsivas e de alto desempenho que impulsionam o crescimento e encantam os usuários.</p>
+                        <h1>                            
+                            Proteção<br>
+                            Completa para o <span class="gradient-text">
+                            trabalhador.</span></h1>
                         <a href="#solucoes" class="btn btn-primary">Explore Nossas Soluções</a>
                     </div>
                     <div class="hero-image scroll-animate">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Espaço de trabalho digital com dispositivos">
+                        <img src="cata.png" alt="Espaço de trabalho digital com dispositivos">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ============================================= -->
+        <!--              CATEGORY CAROUSEL                -->
+        <!-- ============================================= -->
+        <section id="category-carousel-section" class="section-padding" style="padding-top: 5rem; padding-bottom: 2rem;">
+            <div class="container">
+                <h2 class="section-title text-center scroll-animate" style="margin-bottom: 2rem;">EPI'S PARA:</h2>
+                <div class="category-carousel scroll-animate">
+                    <div class="category-carousel-track">
+
+                        <!-- Categories Set 1 -->
+                        <div class="category-slide">
+                            <div class="category-item">
+                                <img src="a agro.png" alt="Ícone Agronegócio">
+                                <span>AGRONEGÓCIO</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a hospital.png" alt="Ícone Hospitalar">
+                                <span>HOSPITALAR</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a solda.png" alt="Ícone Solda">
+                                <span>SOLDA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a pedreiro.png" alt="Ícone Vaqueta">
+                                <span>VAQUETA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a obra.png" alt="Ícone Construção">
+                                <span>CONSTRUÇÃO</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a antichamas.png" alt="Ícone Antichamas">
+                                <span>ANTICHAMAS</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a eletricista.png" alt="Ícone Eletricista">
+                                <span>ELETRICISTA (NR10)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a mercado.png" alt="Ícone Supermercado">
+                                <span>SUPERMERCADO</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a camara fria.png" alt="Ícone Frigorífico">
+                                <span>FRIGORÍFICO</span>
+                            </div>
+                        </div>
+                        
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a serra.png" alt="Ícone Florestal">
+                                <span>FLORESTAL</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Categories Set 2 (for infinite loop) -->
+                        <div class="category-slide">
+                            <div class="category-item">
+                                <img src="a agro.png" alt="Ícone Agronegócio">
+                                <span>AGRONEGÓCIO</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a hospital.png" alt="Ícone Hospitalar">
+                                <span>HOSPITALAR</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a solda.png" alt="Ícone Solda">
+                                <span>SOLDA</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a pedreiro.png" alt="Ícone Vaqueta">
+                                <span>VAQUETA</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a obra.png" alt="Ícone Construção">
+                                <span>CONSTRUÇÃO</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a antichamas.png" alt="Ícone Antichamas">
+                                <span>ANTICHAMAS</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a eletricista.png" alt="Ícone Eletricista">
+                                <span>ELETRICISTA (NR10)</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a mercado.png" alt="Ícone Supermercado">
+                                <span>SUPERMERCADO</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a camara fria.png" alt="Ícone Frigorífico">
+                                <span>FRIGORÍFICO</span>
+                            </div>
+                        </div>
+                        <div class="category-slide">
+                             <div class="category-item">
+                                <img src="a serra.png" alt="Ícone Florestal">
+                                <span>FLORESTAL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- ============================================= -->
         <!--              FEATURE SECTION 1                -->
         <!-- ============================================= -->
+
+
         <section id="solucoes" class="feature-section section-padding">
             <div class="container">
-                <h2 class="section-title text-center scroll-animate">Nossas <span class="highlight">Soluções</span></h2>
+                <h2 class="section-title text-center scroll-animate">Nossos <span class="highlight">Produtos</span></h2>
                 <p class="text-center scroll-animate" style="max-width: 800px; margin: -2rem auto 4rem; color: var(--color-text-secondary);">
-                    Oferecemos uma gama completa de soluções digitais para impulsionar o seu negócio. Desde sistemas corporativos robustos e plataformas de e-commerce vibrantes, até aplicações web interativas e inteligência de dados avançada, nosso objetivo é transformar suas ideias em realidades digitais de alto impacto. Explore abaixo nossas principais áreas de atuação.
+                    não vendemos apenas Equipamentos de Proteção Individual — oferecemos segurança, confiança e eficiência para o seu negócio. 
+                    Cada produto que você adquire conosco vem acompanhado de soluções pensadas
+                    para facilitar sua rotina e garantir que sua equipe esteja sempre protegida e em conformidade com as normas.
                 </p>
-                <div class="feature-content scroll-animate">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop" alt="Equipe colaborando em um escritório moderno">
-                    </div>
+                
+                        <p > <center>
+                            <h2 class="section-title text-center scroll-animate">  <span class="highlight"> SEGUIMENTOS </span></h2>
+
+                            <h2>
+                                ✔️ Industrias de metalurgia     <br>
+                                ✔️ Petroquimica                 <br>
+                                ✔️ Fundições                    <br>
+                                ✔️ Construção civil             <br>
+                                ✔️ Mineração                    <br>
+                                ✔️ siderurgias                  <br>
+                            </h2>    
+
+                        </p></center><BR><BR>
+                
+                <br><br>
+
+                <div class="feature-content scroll-animate" section id="cabeça">
+
+                    <video video autoplay loop muted width="400" height="400" >
+                        <source src="antichamas capuz.mp4" type="video/mp4">
+                    </video>
+
                     <div class="feature-text">
-                        <h3>Soluções Corporativas Personalizadas</h3>
-                        <p>Desenvolvemos sistemas robustos e escaláveis que se integram perfeitamente aos fluxos de trabalho existentes da sua empresa. Nossas soluções corporativas otimizam processos, aumentam a produtividade e fornecem insights valiosos através de painéis de dados intuitivos.</p>
+
+                        <h2 class="section-title text-center scroll-animate"> Proteção para <span class="highlight"> Cabeça</span></h2>
+
+                        <p> 
+                            ✔️ Equipamentos de proteção para a cabeça resistem a impactos<br>
+                            ✔️ Altas temperaturas e ambientes de risco.<br>
+                            ✔️ Garantem conforto e durabilidade, com soluções para indústria<br>
+                            ✔️ Atendem a normas técnicas, protegendo os trabalhadores
+                        </p>
+
                         <ul class="feature-list">
-                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Automação de Processos</span></li>
-                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Integração de Sistemas</span></li>
-                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Segurança Avançada</span></li>
-                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Relatórios Customizados</span></li>
-                        </ul>
+                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Ótimo contra agentes abrasivos </span></li>
+                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Conforto o tempo todo</span></li>
+                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Defesa de agentes escoriantes</span></li>
+                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Proteção termica</span></li>
+                            <li><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Contra Riscos mecanicos</span></li>
+                       </ul>
+
                     </div>
+
                 </div>
                 
                 <!-- PRODUTOS RELACIONADOS 1 -->
                 <div class="related-products related-products-bg-1 scroll-animate">
                     <h3 class="subsection-title">Produtos <span class="highlight">Relacionados</span></h3>
                     <div class="products-grid">
+                        
                         <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="Intranet Corporativa Inteligente">
+                            
+                            <img src="nuca1.png">
+
                             <div class="product-card-content">
-                                <div class="product-tags">
-                                    <span class="tag">Software</span>
-                                    <span class="tag">Corporativo</span>
-                                </div>
-                                <h3>Intranet Corporativa Inteligente</h3>
-                                <p>Conecte sua equipe, centralize documentos e automatize comunicados com um portal seguro.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="1" data-product-name="Intranet Corporativa Inteligente" data-product-image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
+                                <h3>Capuz Soldador TKS 01 – Teknoluvas</h3>
+
+                                <p>
+                                    ✔️  Confeccionado em brim antichama       <br>
+                                    ✔️  Linha de Aramida                      <br>
+                                    ✔️  Fechamento em velcro e elastico       <br> 
+                                    ✔️  Conforto duradouro                    <br>
+                                    ✔️  Desenvolvido para trabalhos com solda <br><br>
+                                    🏭 <b>DIRETO DA FABRICA </b>
+                                </p>
+
+                                <a href="https://consultaca.com/37348/capuz-ou-balaclava"class="btn btn-basto">CA: 37.348</a><br>
+
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="1" data-product-name="Capuz tks1 / código 4362 " 
+                                data-product-image="https://teknoluvas.com.br/wp-content/uploads/2023/12/capuz_soldador_tks_01_teknoluvas_131_1_7f955598883afbd0fc4622afdac9f4e3_20230823104839.jpg">Adicionar ao Orçamento</button>
                             </div>
+
                         </div>
+
                         <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1587825140708-df8769a5b8de?q=80&w=2070&auto=format&fit=crop" alt="Sistema de Gestão (ERP) na Nuvem">
+                           
+                            <img src="nuca2.png">
+
                             <div class="product-card-content">
-                                <div class="product-tags">
-                                    <span class="tag">Software</span>
-                                    <span class="tag">Gestão</span>
-                                </div>
-                                <h3>Sistema de Gestão (ERP) na Nuvem</h3>
-                                <p>Unifique finanças, estoque e operações com um ERP flexível e acessível de qualquer lugar.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="2" data-product-name="Sistema de Gestão (ERP) na Nuvem" data-product-image="https://images.unsplash.com/photo-1587825140708-df8769a5b8de?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
+                                <h3>Capuz Soldador TKS 02 – Teknoluvas</h3>
+
+                                <p>                                    
+                                    ✔️  Confeccionado em brim antichama       <br>
+                                    ✔️  Linha de Aramida                      <br>
+                                    ✔️  Fechamento em velcro e elastico       <br> 
+                                    ✔️  Conforto duradouro                    <br>
+                                    ✔️  Desenvolvido para trabalhos com solda <br><br>
+                                    🏭 <b>DIRETO DA FABRICA </b>
+                                </p>
+                                
+                                <a href="https://consultaca.com/37348/capuz-ou-balaclava"class="btn btn-basto">CA: 37.348</a><br>
+                              
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="2" data-product-name="Capuz tks2 / código 8705 " 
+                                data-product-image="https://teknoluvas.com.br/wp-content/uploads/2023/12/capuz_soldador_tks_02_teknoluvas_133_1_952bd5247a7c3f75c2de998e05662b23_20230823104840.jpg">Adicionar ao Orçamento</button>
                             </div>
+
                         </div>
+ 
                         <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Plataforma de Business Intelligence (BI)">
+                            
+                            <img src="nuca tk3.png">
+
                             <div class="product-card-content">
-                                <div class="product-tags">
-                                    <span class="tag">Dados</span>
-                                    <span class="tag">BI</span>
-                                </div>
-                                <h3>Plataforma de Business Intelligence (BI)</h3>
-                                <p>Transforme dados em dashboards interativos para decisões estratégicas mais rápidas.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="3" data-product-name="Plataforma de BI" data-product-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
+                                <h3>Capuz Soldador TKS 03 – Teknoluvas</h3>
+
+                                <p>                                    
+                                    ✔️  Confeccionado em brim antichama       <br>
+                                    ✔️  Linha de Aramida                      <br>
+                                    ✔️  Fechamento em velcro e elastico       <br> 
+                                    ✔️  Conforto duradouro                    <br>
+                                    ✔️  Desenvolvido para trabalhos com solda <br><br>
+                                    🏭 <b>DIRETO DA FABRICA </b>
+                                </p>
+                                
+                                <a href="https://consultaca.com/37348/capuz-ou-balaclava"class="btn btn-basto">CA: 37.348</a><br>
+                              
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="3" data-product-name="Capuz tks3 / código 8145 " 
+                                data-product-image="https://teknoluvas.com.br/wp-content/webp-express/webp-images/uploads/2025/10/nuca-tk3-1.png.webp">Adicionar ao Orçamento</button>
                             </div>
+
                         </div>
-                        <div class="product-card scroll-animate">
-                            <img src="https://images.unsplash.com/photo-1677756119517-756a188d2278?q=80&w=1974&auto=format&fit=crop" alt="Automação de Processos (RPA)">
+
+                         <div class="product-card scroll-animate">
+                            
+                            <img src="nuca3.png">
+
                             <div class="product-card-content">
-                                <div class="product-tags">
-                                    <span class="tag">Automação</span>
-                                    <span class="tag">IA</span>
-                                </div>
-                                <h3>Automação de Processos (RPA)</h3>
-                                <p>Elimine tarefas repetitivas com robôs de software que otimizam fluxos de trabalho.</p>
-                                <div class="product-card-actions">
-                                    <a href="https://caepi.mte.gov.br/" target="_blank" rel="noopener noreferrer" class="btn btn-neutral ca-button" data-tooltip="C.A. significa 'Certificado de Aprovação'. É uma garantia do Ministério do Trabalho de que o equipamento de proteção foi testado e aprovado.">
-                                        <span>Consultar C.A.</span>
-                                        <svg class="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                    <button class="btn btn-primary add-to-cart-btn" data-product-id="4" data-product-name="Automação de Processos (RPA)" data-product-image="https://images.unsplash.com/photo-1677756119517-756a188d2278?q=80&w=1974&auto=format&fit=crop">Adicionar ao Orçamento</button>
-                                </div>
+                                <h3>Capuz Modelo Tradicional – Teknoluvas</h3>
+                                <p>
+                                    ✔️  tecido de brim na cor azul            <br>
+                                    ✔️  Contra Abrasivos e Escoriantes        <br>
+                                    ✔️  sem fechamento                        <br> 
+                                    ✔️  Conforto duradouro                    <br>
+                                    ✔️  Desenvolvido para trabalhos mecanicos <br><br>
+                                    🏭 <b>DIRETO DA FABRICA </b>
+                                </p>
+                                
+                                <a href="https://consultaca.com/37348/capuz-ou-balaclava"class="btn btn-basto">CA: 37.348</a><br>
+                              
+                                <button class="btn btn-primary add-to-cart-btn" data-product-id="4" data-product-name="Capuz Modelo Tradicional / código 3470 " 
+                                data-product-image="https://teknoluvas.com.br/wp-content/uploads/2023/12/capuz_para_soldador_modelo_tradicional_teknoluvas_135_1_20230823104841.jpg">Adicionar ao Orçamento</button>
                             </div>
+
                         </div>
+
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
         <!-- ============================================= -->
@@ -1806,6 +2391,50 @@
                         <div class="logo-slide"><img src="https://placehold.co/150x50/e2e8f0/475569?text=Figma" alt="Logo da Figma"></div>
                         <div class="logo-slide"><img src="https://placehold.co/150x50/e2e8f0/475569?text=Stripe" alt="Logo da Stripe"></div>
                         <div class="logo-slide"><img src="https://placehold.co/150x50/e2e8f0/475569?text=Vercel" alt="Logo da Vercel"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!--                  DEPOIMENTOS                  -->
+        <!-- ============================================= -->
+        <section class="section-padding" style="background-color: #f9fafb;">
+            <div class="container">
+                <h2 class="section-title text-center scroll-animate">O que nossos <span class="highlight">Clientes Dizem</span></h2>
+                <div class="testimonials-grid scroll-animate">
+                    <div class="testimonial-card">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        <p class="testimonial-text">"A TEKNOLUVAS transformou completamente nossa presença online. O novo e-commerce é rápido, fácil de usar e nossas vendas aumentaram 40% no primeiro mês."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" alt="Carlos Mendes" class="author-image">
+                            <div class="author-info">
+                                <span class="author-name">Carlos Mendes</span>
+                                <span class="author-title">CEO, TechSolutions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        <p class="testimonial-text">"A equipe foi incrivelmente profissional e atenta aos detalhes. O sistema corporativo que desenvolveram otimizou nossos processos internos de forma impressionante."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop" alt="Ana Souza" class="author-image">
+                            <div class="author-info">
+                                <span class="author-name">Ana Souza</span>
+                                <span class="author-title">Gerente de Operações, LogiTrans</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <svg class="quote-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        <p class="testimonial-text">"Excelente suporte e qualidade técnica. A plataforma de BI que implementaram nos deu insights que mudaram a direção estratégica da nossa empresa."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop" alt="Roberto Lima" class="author-image">
+                            <div class="author-info">
+                                <span class="author-name">Roberto Lima</span>
+                                <span class="author-title">Diretor Financeiro, FinanceGroup</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

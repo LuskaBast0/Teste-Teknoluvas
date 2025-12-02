@@ -126,7 +126,7 @@
             top: 100%;
             left: 0;
             background-color: var(--color-white);
-            min-width: 250px;
+            min-width: 260px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border-radius: 0 0 0.5rem 0.5rem;
             padding: 0.5rem 0;
@@ -145,8 +145,16 @@
             transform: translateY(0);
         }
 
+        /* Estilo para os itens do dropdown principal que abrem o menu lateral (Flyout) */
+        .dropdown-item-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
         .dropdown-item {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0.75rem 1.5rem;
             color: var(--color-text-primary);
             text-decoration: none;
@@ -154,26 +162,150 @@
             border-left: 4px solid transparent;
             transition: all 0.2s ease;
             font-size: 0.95rem;
+            width: 100%;
         }
 
-        .dropdown-item:hover {
+        .dropdown-item-wrapper:hover > .dropdown-item {
             background-color: #f3f4f6;
             color: var(--color-primary);
             border-left-color: var(--color-primary);
-            padding-left: 2rem; /* Efeito de degrau/escada ao passar o mouse */
+            padding-left: 2rem;
+        }
+        
+        .flyout-chevron {
+            width: 1rem;
+            height: 1rem;
+            color: #9ca3af;
+        }
+
+        /* O Menu Lateral (Flyout) */
+        .dropdown-flyout {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 450px;
+            min-height: 100%;
+            background-color: var(--color-white);
+            box-shadow: 4px 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0.5rem 0.5rem 0.5rem;
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 101;
+            overflow: hidden;
+        }
+
+        .dropdown-item-wrapper:hover .dropdown-flyout {
+            opacity: 1;
+            visibility: visible;
         }
         /* --- Fim Estilo Dropdown --- */
 
-        .main-nav-links { display: flex; align-items: center; gap: 1.5rem; margin-left: 1rem; }
-        .main-nav-links a {
-            color: var(--color-white); text-decoration: none; font-weight: 700; font-size: 0.9rem;
-            padding: 0.5rem 0; position: relative; transition: color 0.2s ease;
+         /* --- Submenus para Itens de Navegação --- */
+        .main-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-left: 1rem;
+            height: 100%;
         }
-        .main-nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-            background-color: var(--color-white); transform: scaleX(0); transform-origin: bottom center; transition: transform 0.25s ease-out;
+
+        .nav-item-wrapper {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
-        .main-nav-links a:hover::after { transform: scaleX(1); }
+
+        .nav-item-wrapper > a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-item-wrapper > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transform: scaleX(0);
+            transform-origin: bottom center;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-item-wrapper:hover > a::after {
+            transform: scaleX(1);
+        }
+
+        /* Estilo do Dropdown dos Itens de Navegação */
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--color-white);
+            min-width: 380px; /* Width ajustado para caber imagem */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0 0 0.5rem 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            flex-direction: row; /* Layout horizontal */
+            overflow: hidden;
+        }
+
+        .nav-item-wrapper:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown-links-group {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0;
+            flex: 1;
+        }
+
+        .nav-dropdown-link {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-dropdown-link:hover {
+            background-color: #f3f4f6;
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            padding-left: 1.5rem;
+        }
+        
+        .nav-dropdown-featured-img {
+            width: 250px; /* Ajustado para melhor visualização da imagem 500x500 */
+            object-fit: cover;
+            object-position: center;
+            border-left: 1px solid #f3f4f6;
+        }
+        /* --- Fim Submenus --- */
+
 
         @keyframes cart-shake {
             10%, 90% { transform: translate3d(-1px, 0, 0); }
@@ -395,22 +527,218 @@
                         </svg>
                     </div>
                     <div class="dropdown-menu">
-                        <a href="#eletricista" class="dropdown-item">Eletricista</a>
-                        <a href="#antichamas" class="dropdown-item">Antichamas</a>
-                        <a href="#soldador" class="dropdown-item">Soldador</a>
-                        <a href="#trabalho-em-altura" class="dropdown-item">Trabalho em Altura</a>
-                        <a href="#hospitalar" class="dropdown-item">Hospitalar</a>
-                        <a href="#sinalizacao" class="dropdown-item">Sinalização</a>
-                        <a href="#protecao-respiratoria" class="dropdown-item">Proteção Respiratória</a>
+                        <!-- Categoria: Eletricista -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="#eletricista" class="dropdown-item">
+                                Eletricista
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#eletricista" class="nav-dropdown-link">Luvas Isolantes</a>
+                                    <a href="#eletricista" class="nav-dropdown-link">Capacetes Dieletricos</a>
+                                    <a href="#eletricista" class="nav-dropdown-link">Vestimenta NR10</a>
+                                    <a href="#eletricista" class="nav-dropdown-link">Botinas sem Componentes Metálicos</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=500&h=500&auto=format&fit=crop" alt="Eletricista" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Antichamas -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="#antichamas" class="dropdown-item">
+                                Antichamas
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#antichamas" class="nav-dropdown-link">Uniformes FR</a>
+                                    <a href="#antichamas" class="nav-dropdown-link">Capuz Balaclava</a>
+                                    <a href="#antichamas" class="nav-dropdown-link">Luvas de Nomex</a>
+                                    <a href="#antichamas" class="nav-dropdown-link">Macacões de Segurança</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1595769816263-9b910be24d5f?q=80&w=500&h=500&auto=format&fit=crop" alt="Antichamas" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Soldador -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="#soldador" class="dropdown-item">
+                                Soldador
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#soldador" class="nav-dropdown-link">Máscara de Solda Automática</a>
+                                    <a href="#soldador" class="nav-dropdown-link">Avental de Raspa</a>
+                                    <a href="#soldador" class="nav-dropdown-link">Luvas de Raspa</a>
+                                    <a href="#soldador" class="nav-dropdown-link">Perneiras de Raspa</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=500&h=500&auto=format&fit=crop" alt="Soldador" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Trabalho em Altura -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="#trabalho-em-altura" class="dropdown-item">
+                                Trabalho em Altura
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#trabalho-em-altura" class="nav-dropdown-link">Cintos Paraquedista</a>
+                                    <a href="#trabalho-em-altura" class="nav-dropdown-link">Talabartes</a>
+                                    <a href="#trabalho-em-altura" class="nav-dropdown-link">Trava-quedas</a>
+                                    <a href="#trabalho-em-altura" class="nav-dropdown-link">Mosquetões</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1596496181871-9681eacf9764?q=80&w=500&h=500&auto=format&fit=crop" alt="Trabalho em Altura" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                         <!-- Categoria: Hospitalar -->
+                         <div class="dropdown-item-wrapper">
+                            <a href="#hospitalar" class="dropdown-item">
+                                Hospitalar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#hospitalar" class="nav-dropdown-link">Luvas de Procedimento</a>
+                                    <a href="#hospitalar" class="nav-dropdown-link">Máscaras Cirúrgicas</a>
+                                    <a href="#hospitalar" class="nav-dropdown-link">Toucas Descartáveis</a>
+                                    <a href="#hospitalar" class="nav-dropdown-link">Propés</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=500&h=500&auto=format&fit=crop" alt="Hospitalar" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                        <!-- Categoria: Sinalização -->
+                        <div class="dropdown-item-wrapper">
+                            <a href="#sinalizacao" class="dropdown-item">
+                                Sinalização
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#sinalizacao" class="nav-dropdown-link">Cones</a>
+                                    <a href="#sinalizacao" class="nav-dropdown-link">Fitas Zebradas</a>
+                                    <a href="#sinalizacao" class="nav-dropdown-link">Pedestais</a>
+                                    <a href="#sinalizacao" class="nav-dropdown-link">Correntes Plásticas</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1531346300883-93668f44d82c?q=80&w=500&h=500&auto=format&fit=crop" alt="Sinalização" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
+
+                         <!-- Categoria: Proteção Respiratória -->
+                         <div class="dropdown-item-wrapper">
+                            <a href="#protecao-respiratoria" class="dropdown-item">
+                                Proteção Respiratória
+                                <svg xmlns="http://www.w3.org/2000/svg" class="flyout-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </a>
+                            <div class="dropdown-flyout">
+                                <div class="nav-dropdown-links-group">
+                                    <a href="#protecao-respiratoria" class="nav-dropdown-link">Respiradores PFF1/PFF2</a>
+                                    <a href="#protecao-respiratoria" class="nav-dropdown-link">Máscaras Semifaciais</a>
+                                    <a href="#protecao-respiratoria" class="nav-dropdown-link">Filtros Químicos</a>
+                                    <a href="#protecao-respiratoria" class="nav-dropdown-link">Filtros Mecânicos</a>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=500&h=500&auto=format&fit=crop" alt="Proteção Respiratória" class="nav-dropdown-featured-img">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="main-nav-links">
-                    <a href="#cabeça" class="nav-body-link">CABEÇA</a>
-                    <a href="#tronco" class="nav-body-link">TRONCO</a>
-                    <a href="#inferiores" class="nav-body-link">INFERIORES</a>
-                    <a href="#pés" class="nav-body-link">PÉS</a>
-                    <a href="#luvas" class="nav-body-link">LUVAS</a>
-                    <a href="#outros" class="nav-body-link">OUTROS</a>
+                    <div class="nav-item-wrapper">
+                        <a href="#cabeça">CALÇADOS</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#cabeça" class="nav-dropdown-link">Capacetes</a>
+                                <a href="#cabeça" class="nav-dropdown-link">Óculos de Proteção</a>
+                                <a href="#cabeça" class="nav-dropdown-link">Protetor Auricular</a>
+                                <a href="#cabeça" class="nav-dropdown-link">Máscaras PFF2</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Cabeça" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#tronco">EPIS PARA ALTURA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#tronco" class="nav-dropdown-link">Coletes Refletivos</a>
+                                <a href="#tronco" class="nav-dropdown-link">Cintos Paraquedista</a>
+                                <a href="#tronco" class="nav-dropdown-link">Aventais de Raspa</a>
+                                <a href="#tronco" class="nav-dropdown-link">Uniformes</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1622419326359-5f403fd88554?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Tronco" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#inferiores">LUVAS</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#inferiores" class="nav-dropdown-link">Calças Brim</a>
+                                <a href="#inferiores" class="nav-dropdown-link">Perneiras</a>
+                                <a href="#inferiores" class="nav-dropdown-link">Joelheiras</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1542272617-08f083758693?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Inferiores" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#pés">PROTEÇÃO RESPIRATORIA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#pés" class="nav-dropdown-link">Botinas de Segurança</a>
+                                <a href="#pés" class="nav-dropdown-link">Botas de PVC</a>
+                                <a href="#pés" class="nav-dropdown-link">Sapatos Sociais</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1634551351185-1d6a6d074558?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Pés" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#luvas">PROTEÇÃO AUDITIVA</a>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-links-group">
+                                <a href="#luvas" class="nav-dropdown-link">Luvas de Vaqueta</a>
+                                <a href="#luvas" class="nav-dropdown-link">Luvas Nitrílicas</a>
+                                <a href="#luvas" class="nav-dropdown-link">Luvas de Malha</a>
+                                <a href="#luvas" class="nav-dropdown-link">Alta Tensão</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1601443697969-9a49372049d0?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Luvas" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">NR10</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">Cones de Sinalização</a>
+                                <a href="#outros" class="nav-dropdown-link">Extintores</a>
+                                <a href="#outros" class="nav-dropdown-link">Fitas Zebradas</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">Roupas Retardante a Chamas</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">Cones de Sinalização</a>
+                                <a href="#outros" class="nav-dropdown-link">Extintores</a>
+                                <a href="#outros" class="nav-dropdown-link">Fitas Zebradas</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a href="#outros">Epis para Soldador</a>
+                         <div class="nav-dropdown-menu">
+                             <div class="nav-dropdown-links-group">
+                                <a href="#outros" class="nav-dropdown-link">Cones de Sinalização</a>
+                                <a href="#outros" class="nav-dropdown-link">Extintores</a>
+                                <a href="#outros" class="nav-dropdown-link">Fitas Zebradas</a>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1599863833481-9b63435e2060?q=80&w=500&h=500&auto=format&fit=crop" alt="Categoria Outros" class="nav-dropdown-featured-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -446,6 +774,11 @@
                     <div class="products-grid">
                         <div class="product-card" data-categories="eletricista trabalho-em-altura">
                             <img src="https://images.unsplash.com/photo-1581889856532-6273c8703433?q=80&w=1974&auto=format&fit=crop" alt="Capacete de Segurança Aba Frontal">
+                           
+                            <video video autoplay loop muted width="100" height="100" >
+                                <source src="teste video.mp4" type="video/mp4">
+                            </video>
+                            
                             <div class="product-card-content">
                                 <div class="product-tags">
                                     <span class="tag">Eletricista</span>
@@ -461,6 +794,11 @@
                         </div>
                         <div class="product-card" data-categories="hospitalar soldador geral">
                             <img src="https://images.unsplash.com/photo-1614728263944-12a1c028a1c7?q=80&w=1974&auto=format&fit=crop" alt="Óculos de Proteção Incolor">
+
+                            <video video autoplay loop muted width="100" height="100" >
+                                <source src="top vendas.mp4" type="video/mp4">
+                            </video>
+
                             <div class="product-card-content">
                                 <div class="product-tags">
                                     <span class="tag">Hospitalar</span>
@@ -476,6 +814,11 @@
                         </div>
                          <div class="product-card" data-categories="soldador eletricista geral">
                             <img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?q=80&w=2072&auto=format&fit=crop" alt="Protetor Auricular Tipo Concha">
+
+                            <video video autoplay loop muted width="100" height="100" >
+                                <source src="top vendas 2 .mp4" type="video/mp4">
+                            </video>
+
                             <div class="product-card-content">
                                 <div class="product-tags">
                                     <span class="tag">Industrial</span>
@@ -839,13 +1182,16 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
+                <!-- Coluna 1: Sobre -->
                 <div class="footer-column">
-                    <a href="index.html" class="logo gradient-text" style="font-weight: 800; font-size: 1.5rem; text-decoration: none; display: inline-block; margin-bottom: 1rem; background: -webkit-linear-gradient(45deg, #3b82f6, #00529B); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TEKNOLUVAS</a>
-                    <p>Criando experiências digitais inovadoras para impulsionar o seu negócio.</p>
-                    <div class="social-links" style="display: flex; gap: 1.5rem; margin-top: 2rem;">
-                        <a href="#" aria-label="Instagram"><svg class="icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.5rem; height: 1.5rem; fill: currentColor;"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.338.935 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.717 2.126-1.384s.935-1.338 1.384-2.126c.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.148-.558-2.913-.306-.789-.717-1.459-1.384-2.126S20.65.935 21.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.82.679-1.38.896-.423.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.82-1.381-.896-.164-.423-.36-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.015-3.585.074-4.85c.056-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.382.42-.419.819-.679.896-1.381.423-.164 1.057.36 2.227-.413C8.415 2.176 8.797 2.16 12 2.16zm0 5.48c-2.336 0-4.238 1.902-4.238 4.238s1.902 4.238 4.238 4.238 4.238-1.902 4.238-4.238S14.336 7.64 12 7.64zm0 6.69c-1.365 0-2.468-1.103-2.468-2.468s1.103-2.468 2.468-2.468 2.468 1.103 2.468 2.468-1.103 2.468-2.468 2.468zm4.852-6.52c-.732 0-1.325.593-1.325 1.325s.593 1.325 1.325 1.325 1.325-.593 1.325-1.325-.593-1.325-1.325-1.325z"/></svg></a>
+                    <a href="index.html" class="logo" style="color: var(--color-primary); font-size: 1.5rem; font-weight: 800; text-decoration: none; display: block; margin-bottom: 1rem;">TEKNOLUVAS</a>
+                    <p>Referência em Equipamentos de Proteção Individual e Segurança do Trabalho.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#" style="color: #9ca3af;"><svg style="width: 1.5rem; height: 1.5rem;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.338.935 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.717 2.126-1.384s.935-1.338 1.384-2.126c.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.148-.558-2.913-.306-.789-.717-1.459-1.384-2.126S20.65.935 21.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.82.679-1.38.896-.423.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.82-1.381-.896-.164-.423-.36-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.015-3.585.074-4.85c.056-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.382.42-.419.819-.679.896-1.381.423-.164 1.057.36 2.227-.413C8.415 2.176 8.797 2.16 12 2.16zm0 5.48c-2.336 0-4.238 1.902-4.238 4.238s1.902 4.238 4.238 4.238 4.238-1.902 4.238-4.238S14.336 7.64 12 7.64zm0 6.69c-1.365 0-2.468-1.103-2.468-2.468s1.103-2.468 2.468-2.468 2.468 1.103 2.468 2.468-1.103 2.468-2.468 2.468zm4.852-6.52c-.732 0-1.325.593-1.325 1.325s.593 1.325 1.325 1.325 1.325-.593 1.325-1.325-.593-1.325-1.325-1.325z"/></svg></a>
+                        <a href="#" style="color: #9ca3af;"><svg style="width: 1.5rem; height: 1.5rem;" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35C.582 0 0 .582 0 1.325v21.351C0 23.418.582 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.742 0 1.325-.582 1.325-1.325V1.325C24 .582 23.418 0 22.675 0z"/></svg></a>
                     </div>
                 </div>
+                <!-- Coluna 2: Contato Rápido -->
                 <div class="footer-column">
                     <h4>Contato Rápido</h4>
                      <ul class="footer-links">
@@ -853,9 +1199,10 @@
                         <li><a href="tel:+5511999998888">+55 (11) 99999-8888</a></li>
                     </ul>
                 </div>
+                <!-- Coluna 3: Newsletter -->
                 <div class="footer-column">
                     <h4>Fique por Dentro</h4>
-                    <p>Inscreva-se para receber novidades sobre tecnologia e nossas soluções.</p>
+                    <p>Inscreva-se para receber novidades.</p>
                     <form class="newsletter-form">
                         <label for="newsletter-email" class="sr-only">Seu e-mail</label>
                         <input type="email" id="newsletter-email" placeholder="Seu e-mail">
@@ -875,98 +1222,12 @@
         <p id="toast-message" class="toast-message"></p>
     </div>
 
-    <!-- Script de Funcionalidade (Carrinho e Drawer) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- Category Filtering Logic ---
-            const allProductsSections = document.getElementById('all-products-sections');
-            const filteredResultsContainer = document.getElementById('filtered-results-container');
-            const filteredProductsGrid = document.getElementById('filtered-products-grid');
-            const activeFilterBanner = document.getElementById('active-filter-banner');
-            const filterNameSpan = document.getElementById('filter-name');
-            const clearFilterBtn = document.getElementById('clear-filter-btn');
-            
-            // Collect all product cards for later filtering
-            const allProductCards = Array.from(document.querySelectorAll('.product-card'));
-            
-            const handleHashChange = () => {
-                const hash = window.location.hash.substring(1); // Remove '#'
-                const bodyParts = ['cabeça', 'tronco', 'inferiores', 'pés', 'luvas', 'outros'];
-                
-                // If no hash or hash is a body part, show default view (all sections)
-                if (!hash || bodyParts.includes(decodeURIComponent(hash).toLowerCase())) {
-                    resetFilter();
-                    
-                    // If it is a body part, let default browser behavior scroll to it (or manual scroll if needed)
-                    if (hash) {
-                         const element = document.getElementById(hash);
-                         if(element) element.scrollIntoView();
-                    }
-                    return;
-                }
-                
-                // It's a category filter (e.g. #eletricista)
-                applyFilter(hash);
-            };
-
-            const applyFilter = (categorySlug) => {
-                // Hide all sections
-                allProductsSections.style.display = 'none';
-                filteredResultsContainer.style.display = 'block';
-                activeFilterBanner.style.display = 'flex';
-                
-                // Update banner text (Capitalize first letter)
-                const categoryName = categorySlug.replace(/-/g, ' ');
-                filterNameSpan.textContent = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
-                
-                // Filter products
-                filteredProductsGrid.innerHTML = ''; // Clear current grid
-                let hasResults = false;
-                
-                allProductCards.forEach(card => {
-                    const categories = card.dataset.categories ? card.dataset.categories.split(' ') : [];
-                    if (categories.includes(categorySlug)) {
-                        // Clone card to show in filtered grid
-                        const clone = card.cloneNode(true);
-                        // Re-attach event listener to the clone's button (since cloning removes listeners)
-                        // Note: Simpler approach is to just move the DOM elements, but then we lose them from original sections.
-                        // Better to clone and delegate events or handle re-attachment.
-                        // For simplicity in this static structure, let's clone and setup event delegation on the grid container.
-                        filteredProductsGrid.appendChild(clone);
-                        hasResults = true;
-                    }
-                });
-                
-                if (!hasResults) {
-                    filteredProductsGrid.innerHTML = '<p class="text-center" style="grid-column: 1/-1; padding: 2rem;">Nenhum produto encontrado para esta categoria.</p>';
-                }
-            };
-            
-            const resetFilter = () => {
-                allProductsSections.style.display = 'block';
-                filteredResultsContainer.style.display = 'none';
-                activeFilterBanner.style.display = 'none';
-                filteredProductsGrid.innerHTML = '';
-            };
-            
-            clearFilterBtn.addEventListener('click', () => {
-                window.location.hash = '';
-                // resetFilter() will be called by hashchange event, or we can force it:
-                // history.pushState("", document.title, window.location.pathname + window.location.search);
-                // handleHashChange();
-            });
-
-            window.addEventListener('hashchange', handleHashChange);
-            // Check initial load
-            if(window.location.hash) {
-                handleHashChange();
-            }
-
             // --- Shared Drawer Logic ---
             const drawerOverlay = document.getElementById('drawer-overlay');
             const cartDrawer = document.getElementById('cart-drawer');
-            let elementToFocusOnClose;
 
             if(drawerOverlay) {
                 drawerOverlay.addEventListener('click', () => {
@@ -977,54 +1238,21 @@
             // --- Budget (Shopping Cart) Logic ---
             const cartButton = document.getElementById('cart-button');
             const cartCloseButton = document.getElementById('cart-close-button');
-            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn'); // Only picks up initial buttons
             const cartItemsContainer = document.getElementById('cart-items');
             const cartBadge = document.getElementById('cart-badge');
             const cartEmptyMessage = document.getElementById('cart-empty-message');
             const checkoutButton = document.querySelector('.cart-checkout-button');
-            
-            // Carrega do localStorage para manter estado entre páginas
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             
             const saveCart = () => {
                 localStorage.setItem('cart', JSON.stringify(cart));
             };
             
-            const trapFocus = (e) => {
-                if (e.key !== 'Tab') return;
-                const focusableElements = Array.from(cartDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-                const firstFocusableElement = focusableElements[0];
-                const lastFocusableElement = focusableElements[focusableElements.length - 1];
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusableElement) {
-                        lastFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusableElement) {
-                        firstFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                }
-            };
-
             const toggleCart = () => {
                 const isActive = cartDrawer.classList.contains('active');
                 cartDrawer.classList.toggle('active');
                 drawerOverlay.classList.toggle('active');
                 document.body.style.overflow = !isActive ? 'hidden' : '';
-
-                if (!isActive) {
-                    elementToFocusOnClose = document.activeElement;
-                    const focusableElements = cartDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                    if(focusableElements.length > 0) {
-                        setTimeout(() => focusableElements[0].focus(), 100);
-                    }
-                    cartDrawer.addEventListener('keydown', trapFocus);
-                } else {
-                    cartDrawer.removeEventListener('keydown', trapFocus);
-                    if (elementToFocusOnClose) elementToFocusOnClose.focus();
-                }
             };
 
             const renderCart = () => {
@@ -1059,84 +1287,123 @@
                 cartBadge.classList.toggle('visible', totalItems > 0);
             };
 
-            // Main add to cart handler (delegation to support cloned elements)
+            // Event Delegation for Add to Cart Buttons
             document.addEventListener('click', (e) => {
-                if(e.target.matches('.add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
-                    const clickedButton = e.target.matches('.add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
-                    const { productId, productName, productImage } = clickedButton.dataset;
+                // Handle Add to Cart
+                if (e.target.closest('.add-to-cart-btn')) {
+                    const button = e.target.closest('.add-to-cart-btn');
+                    const { productId, productName, productImage } = button.dataset;
+                    
                     if (!productId || !productName || !productImage) return;
-                    if (clickedButton.disabled) return;
+                    if (button.disabled) return;
 
-                    // Fly-to-Cart Animation
-                    let productImageElement = clickedButton.closest('.product-card')?.querySelector('img');
-                    if (productImageElement) {
-                        const startRect = productImageElement.getBoundingClientRect();
+                    // Animation Logic
+                    const imgElement = button.closest('.product-card').querySelector('img');
+                    if (imgElement) {
+                        const startRect = imgElement.getBoundingClientRect();
                         const endRect = cartButton.getBoundingClientRect();
                         const imgClone = new Image();
-                        imgClone.src = productImageElement.src;
+                        imgClone.src = imgElement.src;
                         imgClone.classList.add('fly-to-cart-clone');
-                        Object.assign(imgClone.style, {
-                            left: `${startRect.left}px`, top: `${startRect.top}px`,
-                            width: `${startRect.width}px`, height: `${startRect.height}px`
-                        });
+                        Object.assign(imgClone.style, { left: `${startRect.left}px`, top: `${startRect.top}px`, width: `${startRect.width}px`, height: `${startRect.height}px` });
                         document.body.appendChild(imgClone);
                         requestAnimationFrame(() => {
-                            Object.assign(imgClone.style, {
-                                left: `${endRect.left + endRect.width / 2 - 10}px`,
-                                top: `${endRect.top + endRect.height / 2 - 10}px`,
-                                width: '20px', height: '20px', opacity: '0'
-                            });
+                            Object.assign(imgClone.style, { left: `${endRect.left + endRect.width/2 - 10}px`, top: `${endRect.top + endRect.height/2 - 10}px`, width: '20px', height: '20px', opacity: '0' });
                         });
-                        imgClone.addEventListener('transitionend', () => {
-                            imgClone.remove();
-                            cartButton.classList.add('cart-shake');
-                            setTimeout(() => cartButton.classList.remove('cart-shake'), 700);
-                        });
+                        imgClone.addEventListener('transitionend', () => imgClone.remove());
                     }
 
-                    // Button Feedback
-                    const originalContent = clickedButton.innerHTML;
-                    clickedButton.disabled = true;
-                    clickedButton.innerHTML = `<span style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; line-height: 1;">Adicionado <svg style="width: 1.1rem; height: 1.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span>`;
+                    const originalContent = button.innerHTML;
+                    button.disabled = true;
+                    button.innerHTML = `<span>Adicionado ✓</span>`;
 
                     const existingItem = cart.find(item => item.id === productId && item.name === productName);
-                    if (existingItem) {
-                        existingItem.quantity++;
-                    } else {
-                        cart.push({ id: productId, name: productName, image: productImage, quantity: 1 });
-                    }
-                    renderCart();
+                    if (existingItem) { existingItem.quantity++; } else { cart.push({ id: productId, name: productName, image: productImage, quantity: 1 }); }
                     
-                    setTimeout(() => {
-                        clickedButton.innerHTML = originalContent;
-                        clickedButton.disabled = false;
-                    }, 800);
+                    renderCart();
+                    setTimeout(() => { button.innerHTML = originalContent; button.disabled = false; }, 800);
                 }
-            });
-            
-            cartItemsContainer?.addEventListener('click', (e) => {
-                const cartItemElement = e.target.closest('.cart-item');
-                if (!cartItemElement) return;
-                const productId = cartItemElement.dataset.productId;
-                const itemInCart = cart.find(item => item.id === productId);
-                if (!itemInCart) return;
 
-                if (e.target.classList.contains('increase-quantity-btn')) {
-                    itemInCart.quantity++;
-                } else if (e.target.classList.contains('decrease-quantity-btn')) {
-                    itemInCart.quantity--;
+                // Handle Quantity Buttons in Cart
+                if (e.target.classList.contains('increase-quantity-btn') || e.target.classList.contains('decrease-quantity-btn')) {
+                    const cartItemElement = e.target.closest('.cart-item');
+                    if (!cartItemElement) return;
+                    const productId = cartItemElement.dataset.productId;
+                    const itemInCart = cart.find(item => item.id === productId);
+                    
+                    if (itemInCart) {
+                        if (e.target.classList.contains('increase-quantity-btn')) itemInCart.quantity++;
+                        else itemInCart.quantity--;
+                        if (itemInCart.quantity <= 0) cart = cart.filter(item => item.id !== productId);
+                        renderCart();
+                    }
                 }
-                
-                if (itemInCart.quantity <= 0) cart = cart.filter(item => item.id !== productId);
-                renderCart();
             });
 
             cartButton?.addEventListener('click', toggleCart);
             cartCloseButton?.addEventListener('click', toggleCart);
             renderCart();
 
-            // Checkout Logic
-            const setError = (inputElement, message) => {
+            // --- Product Filtering Logic ---
+            const allProductsContainer = document.getElementById('all-products-sections');
+            const filteredResultsContainer = document.getElementById('filtered-results-container');
+            const filteredProductsGrid = document.getElementById('filtered-products-grid');
+            const activeFilterBanner = document.getElementById('active-filter-banner');
+            const filterNameSpan = document.getElementById('filter-name');
+            const clearFilterBtn = document.getElementById('clear-filter-btn');
+
+            const applyFilter = () => {
+                const hash = window.location.hash.substring(1).toLowerCase(); // Remove #
+                
+                // List of main navigation IDs that are actually sections, not filters
+                const sectionIds = ['cabeça', 'tronco', 'inferiores', 'pés', 'luvas', 'outros'];
+
+                if (!hash || sectionIds.includes(decodeURIComponent(hash))) {
+                    // It's a section link or no hash -> Show normal view
+                    allProductsContainer.style.display = 'block';
+                    filteredResultsContainer.style.display = 'none';
+                    activeFilterBanner.style.display = 'none';
+                    return;
+                }
+
+                // It is a category filter (e.g., eletricista, soldador)
+                allProductsContainer.style.display = 'none';
+                filteredResultsContainer.style.display = 'block';
+                activeFilterBanner.style.display = 'flex';
+                filterNameSpan.textContent = decodeURIComponent(hash).toUpperCase();
+                
+                // Clear previous results
+                filteredProductsGrid.innerHTML = '';
+
+                // Find matching products
+                const allCards = document.querySelectorAll('.category-section .product-card');
+                let count = 0;
+                
+                allCards.forEach(card => {
+                    const categories = card.dataset.categories || '';
+                    if (categories.toLowerCase().includes(hash)) {
+                        const clone = card.cloneNode(true);
+                        filteredProductsGrid.appendChild(clone);
+                        count++;
+                    }
+                });
+
+                if (count === 0) {
+                    filteredProductsGrid.innerHTML = '<p class="text-center" style="grid-column: 1/-1; padding: 2rem;">Nenhum produto encontrado para esta categoria.</p>';
+                }
+            };
+
+            window.addEventListener('hashchange', applyFilter);
+            window.addEventListener('load', applyFilter);
+
+            clearFilterBtn?.addEventListener('click', () => {
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+                applyFilter();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Form Handling ---
+             const setError = (inputElement, message) => {
                 const formGroup = inputElement.parentElement;
                 const errorDisplay = formGroup.querySelector('.form-error-message');
                 inputElement.classList.add('invalid');
@@ -1155,12 +1422,6 @@
                 clearError(document.getElementById('guest-email'));
                 clearError(document.getElementById('guest-phone'));
             }
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (cartDrawer.classList.contains('active')) toggleCart();
-                }
-            });
 
             const showToast = (message) => {
                 const toast = document.getElementById('toast-notification');
@@ -1168,14 +1429,11 @@
                 if (!toast || !toastMessage) return;
                 toastMessage.textContent = message;
                 toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 4000);
+                setTimeout(() => toast.classList.remove('show'), 4000);
             };
 
-            checkoutButton?.addEventListener('click', () => {
-                if (cart.length === 0) {
-                    alert('Seu orçamento está vazio!');
-                    return;
-                }
+            checkoutButton?.addEventListener('click', async () => {
+                if (cart.length === 0) { alert('Seu orçamento está vazio!'); return; }
                 clearGuestErrors();
 
                 const whatsappNumber = "5514997201523";
@@ -1205,10 +1463,7 @@
                 const encodedMessage = encodeURIComponent(message);
                 window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
                 
-                cart = [];
-                renderCart();
-                toggleCart();
-                showToast("Orçamento preparado! Finalize o envio no WhatsApp.");
+                cart = []; renderCart(); toggleCart(); showToast("Orçamento preparado! Finalize o envio no WhatsApp.");
             });
         });
     </script>
